@@ -39,6 +39,45 @@ function convertVilleToCoord(ville) {
     })
 }
 
+function AppelDaily(jourNumber) {
+    /* To Do */
+    temps.innerText = resultatsAPI.daily.weather[jourNumber].description;
+    temperature.innerText = `${Math.trunc(resultatsAPI.daily.temp)}°`;
+    localisation.innerText = resultatsAPI.timezone;
+
+    let heureActuelle = new Date().getHours();
+
+    for (let i = 0; i < heure.length; i++) {
+        let heureIncr = heureActuelle + i * 3;
+
+        if (heureIncr > 24) {
+            heure[i].innerText = `${heureIncr - 24} h`;
+        } else if (heureIncr == 24) {
+            heure[i].innerText = '00 h';
+        } else {
+            heure[i].innerText = `${heureIncr} h`;
+        }
+    }
+
+    for (let j = 0; j < tempPourH.length; j++) {
+        tempPourH[j].innerText = `${Math.trunc(resultatsAPI.hourly[j * 3].temp)}°`;
+    }
+
+    for (let k = 0; k < tabJoursEnOrdre.length; k++) {
+        joursDiv[k].innerText = tabJoursEnOrdre[k].slice(0, 3);
+    }
+
+    for (let m = 0; m < tabJoursEnOrdre.length; m++) {
+        tempJoursDiv[m].innerText = `${Math.trunc(resultatsAPI.daily[m + 1].temp.day)}°`;
+    }
+
+    if (6 < heureActuelle && heureActuelle < 21) {
+        imgIcone.src = `ressources/jour/${resultatsAPI.daily.weather[jourNumber].icon}.svg`;
+    } else {
+        imgIcone.src = `ressources/nuit/${resultatsAPI.daily.weather[jourNumber].icon}.svg`
+    }
+}
+
 function AppelAPI(lat, lon) {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&lang=fr&appid=${APIKEY}`)
         .then(reponse => {
