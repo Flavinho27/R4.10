@@ -11,6 +11,32 @@ body {
     background: linear-gradient(45deg, rgb(59,50,50), rgb(22,28,29));
 }
 
+a {
+    text-decoration: none;
+}
+
+/* ---------- Menu ---------- */
+
+#menu {
+    position: relative;
+    /* background-color: #ec60a6; */
+    padding-top: 20px;
+}
+
+#menu ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#menu ul li {
+    font-size: 20px;
+    color: white;
+}
+
+
+/* ---------- App meteo ---------- */
+
 .container {
     width: 800px;
     height: 600px;
@@ -108,4 +134,15 @@ h1 {
 
 .disparition {
     opacity: 0;
+}
+
+
+/* ---------- App meteo ---------- */
+
+#contact-container, #aide-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
 }
