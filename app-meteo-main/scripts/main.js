@@ -14,6 +14,8 @@ const joursDiv = document.querySelectorAll('.jour-prevision-nom');
 const numeroDuJour = document.querySelectorAll('.numero-du-jour');
 const imgIcone = document.querySelector('.logo-meteo');
 const blocJours = document.querySelectorAll('.bloc-j');
+const blocsJoursIdPositif = document.querySelectorAll('.bloc-j[id^="0"]');
+const blocsJoursIdNégatif = document.querySelectorAll('.bloc-j[id="-1"]');
 
 blocJours.forEach(e => {
     e.addEventListener('click', () => {
@@ -24,6 +26,30 @@ blocJours.forEach(e => {
         majInfos(e.id);
     })
 });
+
+// Ajoute un gestionnaire d'événement de clic à chaque case avec un ID positif
+for (var i = 0; i < blocsJoursIdPositif.length; i++) {
+    blocsJoursIdPositif[i].addEventListener('click', function() {
+      // Récupère tous les blocs à cacher
+      var blocsHeure = document.querySelectorAll('.bloc-h');
+        
+      // Ajoute la classe .invisible à chaque bloc à cacher
+      for (var j = 0; j < blocsHeure.length; j++) {
+        blocsHeure[j].classList.add('invisible');
+      }
+    });
+  }
+
+  // Ajoute un gestionnaire d'événement de clic à la case avec un ID égal à -1
+    blocsJoursIdNégatif[0].addEventListener('click', function() {
+      // Récupère tous les blocs à montrer
+      var blocsHeure = document.querySelectorAll('.bloc-h');
+        
+      // Supprime la classe .invisible à chaque bloc à cacher
+      for (var j = 0; j < blocsHeure.length; j++) {
+        blocsHeure[j].classList.remove('invisible');
+      }
+    });
 
 document.getElementById("recupVille").addEventListener("submit", function(event) {
     // Empêche le rechargement de la page par défaut lors de la soumission du formulaire

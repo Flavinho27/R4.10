@@ -126,6 +126,11 @@ h1 {
     font-size: 21px;
 }
 
+.bloc-j:hover {
+    color: #003366;
+  }
+  
+
 .bloc-h:not(:last-child),
 .bloc-j:not(:last-child) {
     border-right: 1px solid #f1f1f1;
@@ -238,3 +243,8 @@ input[type=text] {
   input[type=text]:focus {
     width: 100%;
   }
+
+  .invisible {
+    display: none;
+  }
+  
