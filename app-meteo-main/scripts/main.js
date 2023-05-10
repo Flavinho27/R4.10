@@ -6,25 +6,25 @@ let resultatsAPI;
 const temps = document.querySelector('.temps');
 const temperature = document.querySelector('.temperature');
 const heure = document.querySelectorAll('.heure-prevision-nom');
+const localisation = document.querySelector('.localisation');
 const tempPourH = document.querySelectorAll('.heure-prevision-valeur');
 const joursDiv = document.querySelectorAll('.jour-prevision-nom');
 const tempJoursDiv = document.querySelectorAll('.jour-prevision-temp');
 const imgIcone = document.querySelector('.logo-meteo');
 
 document.getElementById("recupVille").addEventListener("submit", function(event) {
-    event.preventDefault(); // Empêche le rechargement de la page par défaut lors de la soumission du formulaire
-  
+    // Empêche le rechargement de la page par défaut lors de la soumission du formulaire
+    event.preventDefault(); 
     // Récupérer la valeur saisie
     var ville = document.getElementById("ville").value;
   
-    convertVilleToCoord(ville);
-    console.log(ville);
+    convertVilleEnCoord(ville);
 
     document.getElementById("recupVille").reset();
   });
 
 
-function convertVilleToCoord(ville) {
+function convertVilleEnCoord(ville) {
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${ville}&limit=1&appid=${APIKEY}`)
     .then(reponse => {
         return reponse.json();
@@ -34,14 +34,13 @@ function convertVilleToCoord(ville) {
         resultatsAPI = data
         var lat = resultatsAPI[0].lat;
         var lon = resultatsAPI[0].lon;
-        console.log(lat, lon)
         AppelAPI(lat, lon)
     })
 }
 
 function AppelDaily(jourNumber) {
-    /* To Do */
-    temps.innerText = resultatsAPI.daily.weather[jourNumber].description;
+    temps.innerText = resultatsAPI.daily[jourNumber].weather[0].description;
+    console.log(resultatsAPI.daily[jourNumber].weather[0].description);
     temperature.innerText = `${Math.trunc(resultatsAPI.daily.temp)}°`;
     localisation.innerText = resultatsAPI.timezone;
 
@@ -125,5 +124,6 @@ function AppelAPI(lat, lon) {
             }
 
             chargementContainer.classList.add('disparition');
+            AppelDaily(0);
         })
 }
