@@ -12,6 +12,17 @@ const joursDiv = document.querySelectorAll('.jour-prevision-nom');
 const tempJoursDiv = document.querySelectorAll('.jour-prevision-temp');
 const imgIcone = document.querySelector('.logo-meteo');
 
+const blocJours = document.querySelectorAll('.bloc-j');
+blocJours.forEach(e => {
+    e.addEventListener('click', () => {
+        for (let i = 0; i < blocJours.length; i++) {
+            blocJours[i].classList.remove('active');
+        }
+        e.classList.add('active');
+        AppelDaily(e.id);
+    })
+});
+
 document.getElementById("recupVille").addEventListener("submit", function(event) {
     // Empêche le rechargement de la page par défaut lors de la soumission du formulaire
     event.preventDefault(); 
