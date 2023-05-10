@@ -11,17 +11,17 @@ const heure = document.querySelectorAll('.heure-prevision-nom');
 const localisation = document.querySelector('.localisation');
 const tempPourH = document.querySelectorAll('.heure-prevision-valeur');
 const joursDiv = document.querySelectorAll('.jour-prevision-nom');
-const tempJoursDiv = document.querySelectorAll('.jour-prevision-temp');
+const numeroDuJour = document.querySelectorAll('.numero-du-jour');
 const imgIcone = document.querySelector('.logo-meteo');
-
 const blocJours = document.querySelectorAll('.bloc-j');
+
 blocJours.forEach(e => {
     e.addEventListener('click', () => {
         for (let i = 0; i < blocJours.length; i++) {
             blocJours[i].classList.remove('active');
         }
         e.classList.add('active');
-        AppelDaily(e.id);
+        majInfos(e.id);
     })
 });
 
@@ -37,6 +37,10 @@ document.getElementById("recupVille").addEventListener("submit", function(event)
 });
 
 
+/**
+ * Permet d'obtenir les coordonnées d'une ville en fonction de son nom
+ * @param {*} ville le nom de la ville dont on souhaite obtenir les coordonnées
+ */
 function convertVilleEnCoord(ville) {
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${ville}&limit=1&appid=${APIKEY}`)
         .then(reponse => {
@@ -51,7 +55,15 @@ function convertVilleEnCoord(ville) {
         })
 }
 
-function AppelDaily(numJour) {
+/**
+ * Met à jour les informations de l'application (date, temps et température)
+ * Par défaut les informations du jour sont affichés
+ * Lors du clic sur une case correspondant à un jour, les informations correspondantes
+ * seront affichées
+ * @param {*} numJour numéro du jour. Par convention, -1 correspond à aujourd'hui, 
+ * 0 correspond à demain, 1 correspond à après-demain, etc
+ */
+function majInfos(numJour) {
     const dateActuel = new Date()
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     // TODAY
@@ -63,6 +75,7 @@ function AppelDaily(numJour) {
 
         let heureActuelle = new Date().getHours();
 
+     
         for (let i = 0; i < heure.length; i++) {
             let heureIncr = heureActuelle + i * 3;
 
@@ -83,8 +96,11 @@ function AppelDaily(numJour) {
             joursDiv[k].innerText = tabJoursEnOrdre[k].slice(0, 3);
         }
 
-        for (let m = 0; m < tabJoursEnOrdre.length; m++) {
-            tempJoursDiv[m].innerText = `${Math.trunc(resultatsAPI.daily[m + 1].temp.day)}°`;
+         for (let j = 0; j < 7; j++) {
+            let jour = new Date(dateActuel);
+            jour.setDate(jour.getDate() + j);
+            numJour = jour.getDate()
+            numeroDuJour[j].innerText = numJour;
         }
 
         if (6 < heureActuelle && heureActuelle < 21) {
@@ -108,6 +124,12 @@ function AppelDaily(numJour) {
 
 }
 
+/**
+ * Permet de récupérer les données météorologique d'une ville
+ * en connaissant ses coordonnées
+ * @param {*} lat latitude
+ * @param {*} lon longitude
+ */
 function AppelAPI(lat, lon) {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&lang=fr&appid=${APIKEY}`)
         .then(reponse => {
@@ -118,6 +140,6 @@ function AppelAPI(lat, lon) {
             resultatsAPI = data
             console.log(resultatsAPI);
 
-            AppelDaily(-1);
+            majInfos(-1);
         })
 }
