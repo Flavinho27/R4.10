@@ -137,7 +137,7 @@ h1 {
 }
 
 
-/* ---------- App meteo ---------- */
+/* ---------- containers ---------- */
 
 #contact-container, #aide-container {
     position: relative;
@@ -145,4 +145,53 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     width: fit-content;
+}
+
+/* ---------- Contact page ---------- */
+
+#title-contact {
+    text-align: center;
+    /* background: white; */
+    padding-top: 50px;
+    font-size: 36px;
+}
+
+.container-formulaire {
+    width: fit-content;
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container-formulaire form  {
+    /* background-color: #ec60a6; */
+}
+
+.bloc-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.bloc-input label {
+    margin-bottom: 7px;
+}
+
+
+.bloc-input input, textarea {
+    padding: 10px 3px;
+}
+
+.bloc-button {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 7px 20px;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #1068b6, #ec60a6);
+    color: white;
 }
