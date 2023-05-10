@@ -185,7 +185,7 @@ h1 {
     transform: translate(-50%, -50%);
 }
 
-.container-formulaire form  {
+.container-formulaire form {
     /* background-color: #ec60a6; */
 }
 
@@ -201,7 +201,8 @@ h1 {
 }
 
 
-.bloc-input input, textarea {
+.bloc-input input,
+textarea {
     padding: 10px 3px;
 }
 
@@ -216,3 +217,24 @@ button {
     background: linear-gradient(45deg, #1068b6, #ec60a6);
     color: white;
 }
+
+.active {
+  color: #003366;
+}
+
+input[type=text] {
+    width: 115px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 10px;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  input[type=text]:focus {
+    width: 100%;
+  }
