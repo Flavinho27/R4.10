@@ -155,6 +155,7 @@ input[type=text]:focus {
 }
 
 
+
 .bloc-h:not(:last-child),
 .bloc-j:not(:last-child) {
     border-right: 1px solid #f1f1f1;
@@ -189,21 +190,25 @@ input[type=text]:focus {
     color: #003366;
 }
 
+input[type=text] {
+    width: 115px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 10px;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
 
 .invisible {
     display: none;
-}
-
-
-/* ---------- containers ---------- */
-
-#contact-container,
-#aide-container {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
 }
 
 /* ---------- Contact page ---------- */
@@ -254,4 +259,40 @@ button {
     border-radius: 5px;
     background: linear-gradient(45deg, #1068b6, #ec60a6);
     color: white;
+}
+
+
+/* ---------- Aide page ---------- */
+
+#aide-container {
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    max-width: 62%;
+}
+
+#aide-container section {
+    margin: 50px 0;
+}
+
+#aide-container section > p {
+    margin-bottom: 30px;
+}
+
+#aide-container section > ol {
+    margin-left: 50px;
+}
+
+#aide-container section > ol li {
+    margin: 15px 0;
+}
+
+#aide-container section details {
+    margin: 20px 0;
+}
+
+#aide-container section details p {
+    margin: 20px 0 40px 50px;
 }
