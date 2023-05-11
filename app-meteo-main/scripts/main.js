@@ -14,8 +14,6 @@ const joursDiv = document.querySelectorAll('.jour-prevision-nom');
 const numeroDuJour = document.querySelectorAll('.numero-du-jour');
 const imgIcone = document.querySelector('.logo-meteo');
 const blocJours = document.querySelectorAll('.bloc-j');
-const blocsJoursIdPositif = document.querySelectorAll('.bloc-j[id^="0"]');
-const blocsJoursIdNégatif = document.querySelectorAll('.bloc-j[id="-1"]');
 const blocsHeure = document.querySelectorAll('.bloc-h');
 
 blocJours.forEach(e => {
@@ -28,9 +26,16 @@ blocJours.forEach(e => {
     })
 });
 
+
+// Utilise la méthode filter pour filtrer les blocsJours avec un ID positif
+const blocsJoursIdPositif = Array.from(blocJours).filter(function (bloc) {
+    return parseInt(bloc.id) >= 0;
+});
+
 // Ajoute un gestionnaire d'événement de clic à chaque case avec un ID positif
 for (let i = 0; i < blocsJoursIdPositif.length; i++) {
     blocsJoursIdPositif[i].addEventListener('click', function () {
+        console.log(blocsJoursIdPositif.length);
         // Ajoute la classe .invisible à chaque bloc à cacher
         for (let j = 0; j < blocsHeure.length; j++) {
             blocsHeure[j].classList.add('invisible');
@@ -38,7 +43,12 @@ for (let i = 0; i < blocsJoursIdPositif.length; i++) {
     });
 }
 
-// Ajoute un gestionnaire d'événement de clic à la case avec un ID égal à -1
+// Utilise la méthode filter pour filtrer les blocsJours avec un ID égal à -1
+const blocsJoursIdNégatif = Array.from(blocJours).filter(function (bloc) {
+    return parseInt(bloc.id) == -1;
+});
+
+// Ajoute un gestionnaire d'événement de clic à la case avec un ID égal à -1    
 blocsJoursIdNégatif[0].addEventListener('click', function () {
     // Supprime la classe .invisible à chaque bloc à cacher
     for (let j = 0; j < blocsHeure.length; j++) {
