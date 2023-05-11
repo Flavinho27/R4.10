@@ -26,6 +26,13 @@ blocJours.forEach(e => {
     })
 });
 
+for (let j = 0; j < blocsHeure.length; j++) {
+    blocsHeure[j].classList.add('invisible');
+}
+for (let j = 0; j < blocJours.length; j++) {
+    blocJours[j].classList.add('invisible');
+}
+
 
 // Utilise la méthode filter pour filtrer les blocsJours avec un ID positif
 const blocsJoursIdPositif = Array.from(blocJours).filter(function (bloc) {
@@ -84,6 +91,12 @@ function convertVilleEnCoord(ville) {
                 localisation.innerText = resultatsAPI[0].name;
                 let lat = resultatsAPI[0].lat;
                 let lon = resultatsAPI[0].lon;
+                for (let j = 0; j < blocsHeure.length; j++) {
+                    blocsHeure[j].classList.remove('invisible');
+                }
+                for (let j = 0; j < blocJours.length; j++) {
+                    blocJours[j].classList.remove('invisible');
+                }
                 AppelAPI(lat, lon)
             // Si les coordonnées d'aucune ville est retournée après une recherche avec son nom
             } else {
