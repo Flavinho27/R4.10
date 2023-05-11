@@ -99,7 +99,10 @@ function majInfos(numJour) {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     // TODAY
     if (numJour == -1) {
-        jour.innerText = dateActuel.toLocaleDateString('fr-FR', options);
+        let jourFormate = dateActuel.toLocaleDateString('fr-FR', options);
+        // Met la première lettre en majuscule
+        jourFormate = jourFormate.charAt(0).toUpperCase() + jourFormate.slice(1);
+        jour.innerText = jourFormate;
         temps.innerText = resultatsAPI.current.weather[0].description;
         temperature.innerText = `${Math.trunc(resultatsAPI.current.temp)}°`;
         localisation.innerText = ville;
@@ -144,7 +147,10 @@ function majInfos(numJour) {
 
         let jourClique = new Date(dateActuel);
         jourClique.setDate(jourClique.getDate() + parseInt(numJour) + 1);
-        jour.innerText = jourClique.toLocaleDateString('fr-FR', options);
+        let jourFormate = jourClique.toLocaleDateString('fr-FR', options);
+        // Met la première lettre en majuscule
+        jourFormate = jourFormate.charAt(0).toUpperCase() + jourFormate.slice(1);
+        jour.innerText = jourFormate;
         temps.innerText = resultatsAPI.daily[numJour].weather[0].description;
         temperature.innerText = `${Math.trunc(resultatsAPI.daily[numJour].temp.day)}°`;
         localisation.innerText = ville;
