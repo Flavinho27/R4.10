@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+html {
+    background: linear-gradient(45deg, rgb(59, 50, 50), rgb(22, 28, 29));
+}
+
 body {
     height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
@@ -21,7 +25,6 @@ a {
 
 #menu {
     position: relative;
-    /* background-color: #ec60a6; */
     padding-top: 20px;
 }
 
@@ -58,24 +61,6 @@ h1 {
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid #f1f1f1;
-}
-
-input[type=text] {
-    margin-left: 50%;
-    width: 115px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 20px;
-    font-size: 16px;
-    background-color: white;
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 10px;
-    transition: width 0.4s ease-in-out;
-}
-
-input[type=text]:focus {
-    width: 100%
 }
 
 .bloc-logo-info {
@@ -191,10 +176,9 @@ input[type=text]:focus {
 }
 
 input[type=text] {
-    width: 115px;
+    width: 100%;
     box-sizing: border-box;
     border: 2px solid #ccc;
-    border-radius: 20px;
     font-size: 16px;
     background-color: white;
     background-position: 10px 10px;
@@ -207,6 +191,10 @@ input[type=text]:focus {
     width: 100%;
 }
 
+#recupVille input {
+    border-radius: 20px;
+}
+
 .invisible {
     display: none;
 }
@@ -215,7 +203,6 @@ input[type=text]:focus {
 
 #title-contact {
     text-align: center;
-    /* background: white; */
     padding-top: 50px;
     font-size: 36px;
 }
@@ -226,10 +213,6 @@ input[type=text]:focus {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.container-formulaire form {
-    /* background-color: #ec60a6; */
 }
 
 .bloc-input {
@@ -266,7 +249,7 @@ button {
 
 #aide-container {
     position: relative;
-    top: 40%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: fit-content;
@@ -294,5 +277,70 @@ button {
 }
 
 #aide-container section details p {
-    margin: 20px 0 40px 50px;
+    margin: 20px 0 40px 10px;
+}
+
+
+
+/* ********** RESPONSIVE ********** */
+
+/* ---------- Accueil ---------- */
+
+@media (max-width: 768px) {
+    .container {
+      width: 100%;
+      height: auto;
+      grid-template: auto auto auto auto / 1fr;
+      top: 60%;
+    }
+  
+    .bloc-logo-info {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .bloc-logo,
+    .bloc-info {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .bloc-info .temps {
+      font-size: 30px;
+    }
+  
+    .bloc-info .temperature {
+      font-size: 40px;
+    }
+  
+    .bloc-info .localisation {
+      font-size: 30px;
+    }
+  
+    .heure-prevision-bloc,
+    .jour-prevision-bloc {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+/* --------- Aide --------- */
+
+@media screen and (max-width: 768px) {
+    #menu ul li {
+        margin-bottom: 10px;
+    }
+
+    #aide-container {
+        max-width: 80%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #aide-container {
+        max-width: 90%;
+    }
+
+    #aide-container section {
+        margin: 30px 0;
+    }
 }
