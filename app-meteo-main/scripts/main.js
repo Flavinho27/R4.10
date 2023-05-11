@@ -16,6 +16,7 @@ const imgIcone = document.querySelector('.logo-meteo');
 const blocJours = document.querySelectorAll('.bloc-j');
 const blocsJoursIdPositif = document.querySelectorAll('.bloc-j[id^="0"]');
 const blocsJoursIdNégatif = document.querySelectorAll('.bloc-j[id="-1"]');
+const blocsHeure = document.querySelectorAll('.bloc-h');
 
 blocJours.forEach(e => {
     e.addEventListener('click', () => {
@@ -28,30 +29,24 @@ blocJours.forEach(e => {
 });
 
 // Ajoute un gestionnaire d'événement de clic à chaque case avec un ID positif
-for (var i = 0; i < blocsJoursIdPositif.length; i++) {
-    blocsJoursIdPositif[i].addEventListener('click', function() {
-      // Récupère tous les blocs à cacher
-      var blocsHeure = document.querySelectorAll('.bloc-h');
-        
-      // Ajoute la classe .invisible à chaque bloc à cacher
-      for (var j = 0; j < blocsHeure.length; j++) {
-        blocsHeure[j].classList.add('invisible');
-      }
+for (let i = 0; i < blocsJoursIdPositif.length; i++) {
+    blocsJoursIdPositif[i].addEventListener('click', function () {
+        // Ajoute la classe .invisible à chaque bloc à cacher
+        for (let j = 0; j < blocsHeure.length; j++) {
+            blocsHeure[j].classList.add('invisible');
+        }
     });
-  }
+}
 
-  // Ajoute un gestionnaire d'événement de clic à la case avec un ID égal à -1
-    blocsJoursIdNégatif[0].addEventListener('click', function() {
-      // Récupère tous les blocs à montrer
-      var blocsHeure = document.querySelectorAll('.bloc-h');
-        
-      // Supprime la classe .invisible à chaque bloc à cacher
-      for (var j = 0; j < blocsHeure.length; j++) {
+// Ajoute un gestionnaire d'événement de clic à la case avec un ID égal à -1
+blocsJoursIdNégatif[0].addEventListener('click', function () {
+    // Supprime la classe .invisible à chaque bloc à cacher
+    for (let j = 0; j < blocsHeure.length; j++) {
         blocsHeure[j].classList.remove('invisible');
-      }
-    });
+    }
+});
 
-document.getElementById("recupVille").addEventListener("submit", function(event) {
+document.getElementById("recupVille").addEventListener("submit", function (event) {
     // Empêche le rechargement de la page par défaut lors de la soumission du formulaire
     event.preventDefault();
     // Récupérer la valeur saisie
@@ -75,8 +70,8 @@ function convertVilleEnCoord(ville) {
         .then(data => {
 
             resultatsAPI = data
-            var lat = resultatsAPI[0].lat;
-            var lon = resultatsAPI[0].lon;
+            let lat = resultatsAPI[0].lat;
+            let lon = resultatsAPI[0].lon;
             AppelAPI(lat, lon)
         })
 }
@@ -101,7 +96,7 @@ function majInfos(numJour) {
 
         let heureActuelle = new Date().getHours();
 
-     
+
         for (let i = 0; i < heure.length; i++) {
             let heureIncr = heureActuelle + i * 3;
 
@@ -122,7 +117,7 @@ function majInfos(numJour) {
             joursDiv[k].innerText = tabJoursEnOrdre[k].slice(0, 3);
         }
 
-         for (let j = 0; j < 7; j++) {
+        for (let j = 0; j < 7; j++) {
             let jour = new Date(dateActuel);
             jour.setDate(jour.getDate() + j);
             numJour = jour.getDate()
@@ -145,8 +140,8 @@ function majInfos(numJour) {
         localisation.innerText = ville;
 
         imgIcone.src = `ressources/jour/${resultatsAPI.daily[numJour].weather[0].icon}.svg`;
- 
-        }
+
+    }
 
 }
 

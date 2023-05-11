@@ -128,7 +128,8 @@ h1 {
 
 .bloc-j:hover {
     color: #003366;
-  }
+    cursor: pointer;
+}
   
 
 .bloc-h:not(:last-child),
