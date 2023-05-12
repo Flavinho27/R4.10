@@ -219,7 +219,7 @@ input[type=text]:focus {
     align-items: center;
     background: linear-gradient(45deg, rgb(59, 50, 50), rgb(22, 28, 29));
     width: 100%;
-    height: 100%;
+    height: 70%;
 }
 
 .container-formulaire {
@@ -266,6 +266,7 @@ button {
 
 .aide-container {
     padding: 50px 20px;
+    background: linear-gradient(45deg, rgb(59, 50, 50), rgb(22, 28, 29));
 }
 
 .aide-container section > ol {
@@ -327,29 +328,3 @@ button {
     }
   }
 
-/* --------- Aide --------- */
-/* 
-@media screen and (max-width: 768px) {
-    #menu ul li {
-        margin-bottom: 10px;
-    }
-
-    .aide-container {
-        max-width: 80%;
-        padding: 80px 20px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .big-container-aide {
-        padding: 300px 0;
-    }
-
-    .aide-container {
-        max-width: 90%;
-    }
-
-    .aide-container section {
-        margin: 30px 0;
-    }
-} */
