@@ -21,6 +21,10 @@ a {
     text-decoration: none;
 }
 
+.content {
+    min-height: 100%;
+  }
+
 /* ---------- Menu ---------- */
 
 #menu {
