@@ -26,6 +26,13 @@ blocJours.forEach(e => {
     })
 });
 
+for (let j = 0; j < blocsHeure.length; j++) {
+    blocsHeure[j].classList.add('invisible');
+}
+for (let j = 0; j < blocJours.length; j++) {
+    blocJours[j].classList.add('invisible');
+}
+
 
 // Utilise la méthode filter pour filtrer les blocsJours avec un ID positif
 const blocsJoursIdPositif = Array.from(blocJours).filter(function (bloc) {
@@ -80,9 +87,33 @@ function convertVilleEnCoord(ville) {
         .then(data => {
 
             resultatsAPI = data
-            let lat = resultatsAPI[0].lat;
-            let lon = resultatsAPI[0].lon;
-            AppelAPI(lat, lon)
+            if (resultatsAPI[0]) {
+                localisation.innerText = resultatsAPI[0].name;
+                let lat = resultatsAPI[0].lat;
+                let lon = resultatsAPI[0].lon;
+                for (let j = 0; j < blocsHeure.length; j++) {
+                    blocsHeure[j].classList.remove('invisible');
+                }
+                for (let j = 0; j < blocJours.length; j++) {
+                    blocJours[j].classList.remove('invisible');
+                }
+                AppelAPI(lat, lon)
+            // Si les coordonnées d'aucune ville est retournée après une recherche avec son nom
+            } else {
+                localisation.innerText = 'Ville non trouvée'
+                jour.innerText = '';
+                temps.innerText = '';
+                temperature.innerText = '';
+                for (let j = 0; j < blocsHeure.length; j++) {
+                    blocsHeure[j].classList.add('invisible');
+                }
+                for (let j = 0; j < blocJours.length; j++) {
+                    blocJours[j].classList.add('invisible');
+                }
+                imgIcone.src = `ressources/meteo.png`;
+            }
+
+
         })
 }
 
@@ -105,7 +136,6 @@ function majInfos(numJour) {
         jour.innerText = jourFormate;
         temps.innerText = resultatsAPI.current.weather[0].description;
         temperature.innerText = `${Math.trunc(resultatsAPI.current.temp)}°`;
-        localisation.innerText = ville;
 
         let heureActuelle = new Date().getHours();
 
@@ -153,7 +183,6 @@ function majInfos(numJour) {
         jour.innerText = jourFormate;
         temps.innerText = resultatsAPI.daily[numJour].weather[0].description;
         temperature.innerText = `${Math.trunc(resultatsAPI.daily[numJour].temp.day)}°`;
-        localisation.innerText = ville;
 
         imgIcone.src = `ressources/jour/${resultatsAPI.daily[numJour].weather[0].icon}.svg`;
 
@@ -173,10 +202,7 @@ function AppelAPI(lat, lon) {
             return reponse.json();
         })
         .then(data => {
-
             resultatsAPI = data
-            console.log(resultatsAPI);
-
             majInfos(-1);
         })
 }
