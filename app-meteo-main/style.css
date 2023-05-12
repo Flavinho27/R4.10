@@ -262,42 +262,28 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, rgb(59, 50, 50), rgb(22, 28, 29));
-    width: 100%;
-    height: 100%;
 }
 
 .aide-container {
-    width: fit-content;
-    /* max-width: 62%; */
-    padding: 100px 200px;
-}
-
-.aide-container section {
-    margin: 50px 0;
-}
-
-.aide-container section > p {
-    margin-bottom: 30px;
+    padding: 50px 20px;
 }
 
 .aide-container section > ol {
+    margin-top: 20px;
     margin-left: 50px;
 }
 
-.aide-container section > ol li {
-    margin: 15px 0;
+.section-faq h2 {
+    margin: 50px 0;
 }
 
 .aide-container section details {
-    margin: 50px 0 20px 0;
+    margin-bottom: 2 0px;
 }
 
 .aide-container section details p {
     margin: 20px 0 40px 10px;
-    /* position: absolute; */
 }
-
 
 
 /* ********** RESPONSIVE ********** */
@@ -342,7 +328,7 @@ button {
   }
 
 /* --------- Aide --------- */
-
+/* 
 @media screen and (max-width: 768px) {
     #menu ul li {
         margin-bottom: 10px;
@@ -366,4 +352,4 @@ button {
     .aide-container section {
         margin: 30px 0;
     }
-}
+} */
