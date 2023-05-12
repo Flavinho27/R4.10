@@ -1,5 +1,15 @@
-# app-meteo
+# TP1
+--------------------------------------------------
+-- Développeurs : Liam LENY et Flavien MEZIRARD --
+--------------------------------------------------
 
-Ma première application web utilisant une API !
+Bonjour et merci d'avoir télécharger notre application météo !
 
-Pour ce premier entraînement, j'ai regardé cette vidéo ("Le Designer du Web" sur Youtube) : https://www.youtube.com/watch?v=5JHqEMGkHXY
+Voici nos recommandations pour lancer l'application :
+1. Ouvrir le dossier contenant le code source avec VS Code
+2. Télécharger l'extension "Live Server" sur VS Code
+3. Lancer le server en cliquant sur le bouton "Go Live" en bas à droite de VS Code (bouton ajouté grâce à l'extension précédente)
+4. C'est tout ! Vous pouvez profiter de l'application !
+5. Pour plus d'informations sur l'utilisation de l'application, rendez-vous sur la page "Aide" grâce au menu
+
+A bientôt !
