@@ -1,0 +1,61 @@
+.container {
+    background: linear-gradient(45deg, #1068b6, #ec60a6);
+    border: 1px solid #f1f1f1;
+    padding: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .navbar-brand {
+    color: #fff;
+    font-size: 24px;
+  }
+  
+  .bloc-info .temps {
+    font-size: 40px;
+  }
+  
+  .bloc-info .temperature {
+    font-size: 60px;
+  }
+  
+  .bloc-info .localisation {
+    font-size: 40px;
+    word-wrap: break-word;
+  }
+  
+  .heure-prevision-bloc,
+  .jour-prevision-bloc {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .bloc-h,
+  .bloc-j {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-top: 1px solid #f1f1f1;
+    font-size: 21px;
+  }
+  
+  .bloc-j:hover {
+    color: #003366;
+    cursor: pointer;
+  }
+  
+  .bloc-h:not(:last-child),
+  .bloc-j:not(:last-child) {
+    border-right: 1px solid #f1f1f1;
+  }
+  
+  .bloc-h p,
+  .bloc-j p {
+    margin: 5px;
+  }
+  

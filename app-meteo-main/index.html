@@ -5,43 +5,170 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AppMétéo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
-<body>
+<body class="bg-dark">
 
-    <div id="menu">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Logo</a>
+        <!-- <img src="./ressources/meteo.png" alt="logo meteo" class="img-fluid"> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <ul>
-            <a href="index.html">
-                <li>Accueil</li>
-            </a>
-            <a href="contact.html">
-                <li>Contact</li>
-            </a>
-            <a href="aide.html">
-                <li>Aide</li>
-            </a>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
 
-    </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Aide</a>
+                </li>
+            </ul>
 
-    <div class="big-container">
+        </div>
+    </nav>
+
+    <!-- bg-primary, bg-secondary, bg-success, bg-info, bg-warning, bg-danger, bg-light, bg-dark -->
+
+    <div class="d-flex bg-success justify-content-center align-items-center">
 
 
         <div class="container">
 
-            <h1>
-                <form id="recupVille">
-                    <input type="text" id="ville" name="ville" placeholder="Rechercher une ville">
-                </form>
-            </h1>
+            <form id="recupVille" class="mb-3">
+                <div class="input-group">
+                    <input type="text" id="ville" name="ville" class="form-control" placeholder="Rechercher une ville">
+                    <button class="btn btn-primary" type="submit">Rechercher</button>
+                </div>
+            </form>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a class="navbar-brand" href="#">Logo</a>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="bloc-info text-center">
+                        <p class="jour"></p>
+                        <p class="temps"></p>
+                        <p class="temperature"></p>
+                        <p class="localisation"></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="heure-prevision-bloc">
+                        <div class="bloc-h">
+                            <p class="heure-prevision-nom">test</p>
+                            <p class="heure-prevision-valeur">test</p>
+                        </div>
+                        <div class="bloc-h">
+                            <p class="heure-prevision-nom"></p>
+                            <p class="heure-prevision-valeur"></p>
+                        </div>
+                        <div class="bloc-h">
+                            <p class="heure-prevision-nom"></p>
+                            <p class="heure-prevision-valeur"></p>
+                        </div>
+                        <div class="bloc-h">
+                            <p class="heure-prevision-nom"></p>
+                            <p class="heure-prevision-valeur"></p>
+                        </div>
+                        <div class="bloc-h">
+                            <p class="heure-prevision-nom"></p>
+                            <p class="heure-prevision-valeur"></p>
+                        </div>
+                        <div class="bloc-h">
+                            <p class="heure-prevision-nom"></p>
+                            <p class="heure-prevision-valeur"></p>
+                        </div>
+                        <div class="bloc-h">
+                            <p class="heure-prevision-nom"></p>
+                            <p class="heure-prevision-valeur"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="jour-prevision-bloc">
+                        <!-- Jours de prévision -->
+                        <div class="bloc-j active" id="-1">
+                            <p class="jour-prevision-nom"></p>
+                            <p class="numero-du-jour"></p>
+                        </div>
+                        <div class="bloc-j" id="0">
+                            <p class="jour-prevision-nom"></p>
+                            <p class="numero-du-jour"></p>
+                        </div>
+                        <div class="bloc-j" id="1">
+                            <p class="jour-prevision-nom"></p>
+                            <p class="numero-du-jour"></p>
+                        </div>
+                        <div class="bloc-j" id="2">
+                            <p class="jour-prevision-nom"></p>
+                            <p class="numero-du-jour"></p>
+                        </div>
+                        <div class="bloc-j" id="3">
+                            <p class="jour-prevision-nom"></p>
+                            <p class="numero-du-jour"></p>
+                        </div>
+                        <div class="bloc-j" id="4">
+                            <p class="jour-prevision-nom"></p>
+                            <p class="numero-du-jour"></p>
+                        </div>
+                        <div class="bloc-j" id="5">
+                            <p class="jour-prevision-nom"></p>
+                            <p class="numero-du-jour"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!-- <div class="container bg-warning text-center w-50">
+
+            <div class="row">
+                <div class="col-7">Colonne</div>
+                <div class="col-7">Colonne</div>
+                <div class="col-7">Colonne</div>
+                <div class="col-7">Colonne</div>
+            </div>
+
+        </div> -->
+
+
+        <!-- <div class="container">
+
+            <form id="recupVille">
+                <input type="text" id="ville" name="ville" placeholder="Rechercher une ville">
+            </form>
 
             <div class="bloc-logo-info">
 
                 <div class="bloc-logo">
-                    <img src="./ressources/meteo.png" alt="logo du temps qu'il fait" class="logo-meteo">
+                    <a class="navbar-brand" href="#">Logo</a>
                 </div>
 
                 <div class="bloc-info">
@@ -121,13 +248,15 @@
             </div>
 
 
-        </div>
+        </div> -->
 
     </div>
 
 
-    <footer>
-        <p>Contributeur : Liam LENY et Flavien MEZIRARD</p>
+    <footer class="footer">
+        <div class="container-md d-flex justify-content-center align-items-center bg-light">
+            <p>Contributeur : Liam LENY et Flavien MEZIRARD</p>
+        </div>
     </footer>
 
 
