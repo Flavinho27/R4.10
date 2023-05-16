@@ -1,37 +1,39 @@
 import tabJoursEnOrdre from './Utilitaire/gestionTemps.js';
 
 const APIKEY = '1db618f01129e97ae866956a56ec549f';
-let resultatsAPI;
-let ville;
 
-const temps = document.querySelector('.temps');
-const temperature = document.querySelector('.temperature');
-const jour = document.querySelector('.jour');
 const heure = document.querySelectorAll('.heure-prevision-nom');
-const localisation = document.querySelector('.localisation');
 const tempPourH = document.querySelectorAll('.heure-prevision-valeur');
 const joursDiv = document.querySelectorAll('.jour-prevision-nom');
 const numeroDuJour = document.querySelectorAll('.numero-du-jour');
-const imgIcone = document.querySelector('.logo-meteo');
-const blocJours = document.querySelectorAll('.bloc-j');
-const blocsHeure = document.querySelectorAll('.bloc-h');
 
-blocJours.forEach(e => {
-    e.addEventListener('click', () => {
-        for (let i = 0; i < blocJours.length; i++) {
-            blocJours[i].classList.remove('active');
-        }
-        e.classList.add('active');
-        majInfos(e.id);
-    })
+// blocJours.forEach(e => {
+//     e.addEventListener('click', () => {
+//         for (let i = 0; i < blocJours.length; i++) {
+//             blocJours[i].classList.remove('active');
+//         }
+//         e.classList.add('active');
+//         majInfos(e.id);
+//     })
+// });
+
+
+$(document).ready(async function () {
+    $(".bloc-h").hide();
+    $(".bloc-j").hide();
+
+
+    try {
+        $("#recupVille").submit(function (event) {
+            event.preventDefault();
+            var ville = $("#ville").val();
+            convertVilleEnCoord(ville);
+
+            $("#recupVille")[0].reset();
+        });
+    } catch (error) {
+    }
 });
-
-for (let j = 0; j < blocsHeure.length; j++) {
-    blocsHeure[j].classList.add('invisible');
-}
-for (let j = 0; j < blocJours.length; j++) {
-    blocJours[j].classList.add('invisible');
-}
 
 
 // Utilise la méthode filter pour filtrer les blocsJours avec un ID positif
@@ -63,16 +65,6 @@ blocsJoursIdNégatif[0].addEventListener('click', function () {
     }
 });
 
-document.getElementById("recupVille").addEventListener("submit", function (event) {
-    // Empêche le rechargement de la page par défaut lors de la soumission du formulaire
-    event.preventDefault();
-    // Récupérer la valeur saisie
-    ville = document.getElementById("ville").value;
-
-    convertVilleEnCoord(ville);
-
-    document.getElementById("recupVille").reset();
-});
 
 
 /**
@@ -80,42 +72,40 @@ document.getElementById("recupVille").addEventListener("submit", function (event
  * @param {*} ville le nom de la ville dont on souhaite obtenir les coordonnées
  */
 function convertVilleEnCoord(ville) {
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${ville}&limit=1&appid=${APIKEY}`)
-        .then(reponse => {
-            return reponse.json();
-        })
-        .then(data => {
-
-            resultatsAPI = data
-            if (resultatsAPI[0]) {
-                localisation.innerText = resultatsAPI[0].name;
-                let lat = resultatsAPI[0].lat;
-                let lon = resultatsAPI[0].lon;
-                for (let j = 0; j < blocsHeure.length; j++) {
-                    blocsHeure[j].classList.remove('invisible');
-                }
-                for (let j = 0; j < blocJours.length; j++) {
-                    blocJours[j].classList.remove('invisible');
-                }
+    $.ajax({
+        url: `http://api.openweathermap.org/geo/1.0/direct`,
+        data: {
+            q: ville,
+            limit: 1,
+            appid: APIKEY
+        },
+        success: function (response) {
+            if (response[0]) {
+                let infosApi = response[0];
+                let lat = infosApi.lat;
+                let lon = infosApi.lon;
+                $(".localisation").text(infosApi.name);
+                $(".bloc-h").show();
+                $(".bloc-j").show();
+                console.log(response);
+                console.log(infosApi.name);
                 AppelAPI(lat, lon)
-            // Si les coordonnées d'aucune ville est retournée après une recherche avec son nom
             } else {
-                localisation.innerText = 'Ville non trouvée'
-                jour.innerText = '';
-                temps.innerText = '';
-                temperature.innerText = '';
-                for (let j = 0; j < blocsHeure.length; j++) {
-                    blocsHeure[j].classList.add('invisible');
-                }
-                for (let j = 0; j < blocJours.length; j++) {
-                    blocJours[j].classList.add('invisible');
-                }
-                imgIcone.src = `ressources/meteo.png`;
+                $(".localisation").text('Ville non trouvée');
+                $(".jour").text('');
+                $(".temps").text('');
+                $(".temperature").text('');
+                $(".bloc-h").hide();
+                $(".bloc-j").hide();
+                $(".logo-meteo").attr("src", "ressources/meteo.png");
             }
-
-
-        })
+        },
+        error: function (error) {
+            console.error("Erreur lors de l'appel de l'API :", error);
+        }
+    });
 }
+
 
 /**
  * Met à jour les informations de l'application (date, temps et température)
@@ -125,7 +115,7 @@ function convertVilleEnCoord(ville) {
  * @param {*} numJour numéro du jour. Par convention, -1 correspond à aujourd'hui, 
  * 0 correspond à demain, 1 correspond à après-demain, etc
  */
-function majInfos(numJour) {
+function majInfos(numJour, resultatsAPI) {
     const dateActuel = new Date()
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     // TODAY
@@ -133,9 +123,9 @@ function majInfos(numJour) {
         let jourFormate = dateActuel.toLocaleDateString('fr-FR', options);
         // Met la première lettre en majuscule
         jourFormate = jourFormate.charAt(0).toUpperCase() + jourFormate.slice(1);
-        jour.innerText = jourFormate;
-        temps.innerText = resultatsAPI.current.weather[0].description;
-        temperature.innerText = `${Math.trunc(resultatsAPI.current.temp)}°`;
+        $(".jour").text(jourFormate);
+        $(".temps").text(resultatsAPI.current.weather[0].description);
+        $(".temperature").text(`${Math.trunc(resultatsAPI.current.temp)}°`);
 
         let heureActuelle = new Date().getHours();
 
@@ -180,9 +170,9 @@ function majInfos(numJour) {
         let jourFormate = jourClique.toLocaleDateString('fr-FR', options);
         // Met la première lettre en majuscule
         jourFormate = jourFormate.charAt(0).toUpperCase() + jourFormate.slice(1);
-        jour.innerText = jourFormate;
-        temps.innerText = resultatsAPI.daily[numJour].weather[0].description;
-        temperature.innerText = `${Math.trunc(resultatsAPI.daily[numJour].temp.day)}°`;
+        $(".jour").text(jourFormate);
+        $(".temps").text(resultatsAPI.daily[numJour].weather[0].description);
+        $(".temperature").text(`${Math.trunc(resultatsAPI.daily[numJour].temp.day)}°`);
 
         imgIcone.src = `ressources/jour/${resultatsAPI.daily[numJour].weather[0].icon}.svg`;
 
@@ -197,12 +187,18 @@ function majInfos(numJour) {
  * @param {*} lon longitude
  */
 function AppelAPI(lat, lon) {
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&lang=fr&appid=${APIKEY}`)
-        .then(reponse => {
-            return reponse.json();
-        })
-        .then(data => {
-            resultatsAPI = data
-            majInfos(-1);
-        })
+    $.ajax({
+        url: `https://api.openweathermap.org/data/2.5/onecall`,
+        data: {
+            lat: lat,
+            lon: lon,
+            exclude: "minutely",
+            units: "metric",
+            lang: "fr",
+            appid: APIKEY
+        },
+        success: function (response) {
+            majInfos(-1, response);
+        }
+    });
 }
