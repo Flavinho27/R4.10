@@ -110,10 +110,13 @@ function majInfos(numJour) {
         $(".jour").text(jourFormate);
         $(".temps").text(resultatsAPI.current.weather[0].description);
         $(".temperature").text(`${Math.trunc(resultatsAPI.current.temp)}°`);
+        $(".temperatureRessenti").text(`${Math.trunc(resultatsAPI.current.feels_like)}°`);
+        $(".UV").text(`${Math.trunc(resultatsAPI.current.uvi)}°`);
+        $(".humidite").text(resultatsAPI.current.humidity);
+        $(".vent").text(resultatsAPI.current.wind_speed);
+        $(".pressionAtmospherique").text(resultatsAPI.current.pressure);
 
         let heureActuelle = new Date().getHours();
-
-
         const heureAffichee = $('.heure-prevision-nom');
         for (let i = 0; i < heureAffichee.length; i++) {
             let heureIncr = heureActuelle + i * 3;
@@ -165,6 +168,11 @@ function majInfos(numJour) {
         $(".jour").text(jourFormate);
         $(".temps").text(resultatsAPI.daily[numJour].weather[0].description);
         $(".temperature").text(`${Math.trunc(resultatsAPI.daily[numJour].temp.day)}°`);
+        $(".humidite").text(resultatsAPI.daily[numJour].humidity);
+        $(".vent").text(resultatsAPI.daily[numJour].wind_speed);
+        $(".temperatureMin").text(resultatsAPI.daily[numJour].temp.min);
+        $(".temperatureMax").text(resultatsAPI.daily[numJour].temp.max);
+        $(".pressionAtmospherique").text(resultatsAPI.daily[numJour].pressure);
 
         $(".logo-meteo").attr("src", `ressources/jour/${resultatsAPI.daily[numJour].weather[0].icon}.svg`);
 
