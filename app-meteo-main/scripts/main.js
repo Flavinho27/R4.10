@@ -1,17 +1,15 @@
 import tabJoursEnOrdre from './Utilitaire/gestionTemps.js';
 
 const APIKEY = '1db618f01129e97ae866956a56ec549f';
+let resultatsAPI;
 
 
-// blocJours.forEach(e => {
-//     e.addEventListener('click', () => {
-//         for (let i = 0; i < blocJours.length; i++) {
-//             blocJours[i].classList.remove('active');
-//         }
-//         e.classList.add('active');
-//         majInfos(e.id);
-//     })
-// });
+$('.bloc-j').click(function() {
+    $('.bloc-j').removeClass('active');
+    $(this).addClass('active');
+    majInfos($(this).attr('id'));
+});
+
 
 
 $(document).ready(async function () {
@@ -101,7 +99,7 @@ function convertVilleEnCoord(ville) {
  * @param {*} numJour numéro du jour. Par convention, -1 correspond à aujourd'hui, 
  * 0 correspond à demain, 1 correspond à après-demain, etc
  */
-function majInfos(numJour, resultatsAPI) {
+function majInfos(numJour) {
     const dateActuel = new Date()
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     // TODAY
@@ -193,7 +191,8 @@ function AppelAPI(lat, lon) {
             appid: APIKEY
         },
         success: function (response) {
-            majInfos(-1, response);
+            resultatsAPI = response;
+            majInfos(-1);
         }
     });
 }
