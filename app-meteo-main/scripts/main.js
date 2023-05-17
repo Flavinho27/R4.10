@@ -2,10 +2,6 @@ import tabJoursEnOrdre from './Utilitaire/gestionTemps.js';
 
 const APIKEY = '1db618f01129e97ae866956a56ec549f';
 
-const heure = document.querySelectorAll('.heure-prevision-nom');
-const tempPourH = document.querySelectorAll('.heure-prevision-valeur');
-const joursDiv = document.querySelectorAll('.jour-prevision-nom');
-const numeroDuJour = document.querySelectorAll('.numero-du-jour');
 
 // blocJours.forEach(e => {
 //     e.addEventListener('click', () => {
@@ -37,32 +33,22 @@ $(document).ready(async function () {
 
 
 // Utilise la méthode filter pour filtrer les blocsJours avec un ID positif
-const blocsJoursIdPositif = Array.from(blocJours).filter(function (bloc) {
-    return parseInt(bloc.id) >= 0;
+const blocsJoursIdPositif = $('.bloc-j').filter(function () {
+    return parseInt($(this).attr('id')) >= 0;
 });
 
-// Ajoute un gestionnaire d'événement de clic à chaque case avec un ID positif
-for (let i = 0; i < blocsJoursIdPositif.length; i++) {
-    blocsJoursIdPositif[i].addEventListener('click', function () {
-        console.log(blocsJoursIdPositif.length);
-        // Ajoute la classe .invisible à chaque bloc à cacher
-        for (let j = 0; j < blocsHeure.length; j++) {
-            blocsHeure[j].classList.add('invisible');
-        }
-    });
-}
-
-// Utilise la méthode filter pour filtrer les blocsJours avec un ID égal à -1
-const blocsJoursIdNégatif = Array.from(blocJours).filter(function (bloc) {
-    return parseInt(bloc.id) == -1;
+/* Cache les blocs de météo détaillée des 18 prochaines heures 
+   quand on clique sur une autre date qu'aujourd'hui */
+blocsJoursIdPositif.on('click', function () {
+    console.log(blocsJoursIdPositif.length);
+    $('.bloc-h').hide();
 });
 
-// Ajoute un gestionnaire d'événement de clic à la case avec un ID égal à -1    
-blocsJoursIdNégatif[0].addEventListener('click', function () {
-    // Supprime la classe .invisible à chaque bloc à cacher
-    for (let j = 0; j < blocsHeure.length; j++) {
-        blocsHeure[j].classList.remove('invisible');
-    }
+
+/* Montre les blocs de météo détaillée des 18 prochaines heures 
+   quand on clique sur la date d'aujourd'hui */
+$('.bloc-j[id="-1"]').on('click', function () {
+    $('.bloc-h').show();
 });
 
 
@@ -130,37 +116,45 @@ function majInfos(numJour, resultatsAPI) {
         let heureActuelle = new Date().getHours();
 
 
-        for (let i = 0; i < heure.length; i++) {
+        const heureAffichee = $('.heure-prevision-nom');
+        for (let i = 0; i < heureAffichee.length; i++) {
             let heureIncr = heureActuelle + i * 3;
-
+        
             if (heureIncr > 24) {
-                heure[i].innerText = `${heureIncr - 24} h`;
-            } else if (heureIncr == 24) {
-                heure[i].innerText = '00 h';
+                heureAffichee.eq(i).text(`${heureIncr - 24} h`);
+            } else if (heureIncr === 24) {
+                heureAffichee.eq(i).text('00 h');
             } else {
-                heure[i].innerText = `${heureIncr} h`;
+                heureAffichee.eq(i).text(`${heureIncr} h`);
             }
         }
+        
 
-        for (let j = 0; j < tempPourH.length; j++) {
-            tempPourH[j].innerText = `${Math.trunc(resultatsAPI.hourly[j * 3].temp)}°`;
+        const temperatureParHeureAffichee = $('.heure-prevision-valeur');
+        for (let j = 0; j < temperatureParHeureAffichee.length; j++) {
+            temperatureParHeureAffichee.eq(j).text(`${Math.trunc(resultatsAPI.hourly[j * 3].temp)}°`);
         }
 
+        const abbreviationJour = $('.jour-prevision-nom');
         for (let k = 0; k < tabJoursEnOrdre.length; k++) {
-            joursDiv[k].innerText = tabJoursEnOrdre[k].slice(0, 3);
+            abbreviationJour.eq(k).text(tabJoursEnOrdre[k].slice(0, 3));
         }
 
+        const numeroJour =  $('.numero-du-jour');
         for (let j = 0; j < 7; j++) {
             let jour = new Date(dateActuel);
             jour.setDate(jour.getDate() + j);
-            numJour = jour.getDate()
-            numeroDuJour[j].innerText = numJour;
+            numJour = jour.getDate();
+            numeroJour.eq(j).text(numJour);
         }
+        
 
         if (6 < heureActuelle && heureActuelle < 21) {
-            imgIcone.src = `ressources/jour/${resultatsAPI.current.weather[0].icon}.svg`;
+            $(".logo-meteo").attr("src", `ressources/jour/${resultatsAPI.current.weather[0].icon}.svg`);
+
         } else {
-            imgIcone.src = `ressources/nuit/${resultatsAPI.current.weather[0].icon}.svg`
+            $(".logo-meteo").attr("src", `ressources/nuit/${resultatsAPI.current.weather[0].icon}.svg`);
+
         }
 
     } else {
@@ -174,7 +168,8 @@ function majInfos(numJour, resultatsAPI) {
         $(".temps").text(resultatsAPI.daily[numJour].weather[0].description);
         $(".temperature").text(`${Math.trunc(resultatsAPI.daily[numJour].temp.day)}°`);
 
-        imgIcone.src = `ressources/jour/${resultatsAPI.daily[numJour].weather[0].icon}.svg`;
+        $(".logo-meteo").attr("src", `ressources/jour/${resultatsAPI.daily[numJour].weather[0].icon}.svg`);
+
 
     }
 
