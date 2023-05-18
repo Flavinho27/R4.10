@@ -1,64 +1,163 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Menu ---------- */
+
+.logo-meteo-menu {
+  width: 80px;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 24px;
+}
+
+/* ---------- App Météo ---------*/
+
+.big-container {
+  flex: 1;
+  background: linear-gradient(0deg, #1068b6, #ec60a6);
+}
+
 .container {
-    background: linear-gradient(45deg, #1068b6, #ec60a6);
-    border: 1px solid #f1f1f1;
-    padding: 20px;
-  }
-  
-  .input-group {
-    margin-bottom: 20px;
-  }
-  
-  .navbar-brand {
-    color: #fff;
-    font-size: 24px;
-  }
-  
-  .bloc-info .temps {
-    font-size: 40px;
-  }
-  
-  .bloc-info .temperature {
-    font-size: 60px;
-  }
-  
-  .bloc-info .localisation {
-    font-size: 40px;
-    word-wrap: break-word;
-  }
-  
-  .heure-prevision-bloc,
-  .jour-prevision-bloc {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .bloc-h,
-  .bloc-j {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-top: 1px solid #f1f1f1;
-    font-size: 21px;
-  }
-  
-  .bloc-j:hover {
-    color: #003366;
-    cursor: pointer;
-  }
-  
-  .bloc-h:not(:last-child),
+  background: linear-gradient(45deg, #1068b6, #ec60a6);
+  border: 1px solid #f1f1f1;
+  /* padding: 20px; */
+  /* min-height: 400px; */
+}
+
+.input-group {
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+
+
+.logo-meteo {
+  width: 80%;
+  /* max-width: 200px; */
+  margin-top: -15%;
+  /* margin-bottom: -10%; */
+}
+
+
+.avant-appel-api-logo-meteo {
+  width: 250px;
+  margin: 50px;
+}
+
+.bloc-info .temps {
+  font-size: 40px;
+}
+
+.bloc-info .temperature {
+  font-size: 60px;
+}
+
+.bloc-info .localisation {
+  font-size: 40px;
+  word-wrap: break-word;
+}
+
+.heure-prevision-nom,
+.jour-prevision-nom {
+  color: #fff;
+}
+
+.heure-prevision-bloc,
+.jour-prevision-bloc {
+  display: grid;
+  /* grid-template-columns: repeat(7, 1fr); */
+  /* Je veux 4 colonnes minimum dans mon css grid */
+  grid-template-columns: repeat(auto-fit, minmax(67px, 1fr));
+
+  /* grid-gap: 10px; */
+  /* margin-bottom: 20px; */
+}
+
+.heure-prevision-bloc {
+  background-color: rgba(236, 96, 166, 0.3);
+}
+
+.row .col {
+  padding: 0;
+}
+
+.bloc-h,
+.bloc-j {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* border-top: 1px solid #f1f1f1; */
+  font-size: 21px;
+  border: 1px solid #f1f1f1;
+}
+
+.bloc-j:hover {
+  color: #003366;
+  cursor: pointer;
+}
+
+/* .bloc-h:not(:last-child),
   .bloc-j:not(:last-child) {
     border-right: 1px solid #f1f1f1;
+  } */
+
+.bloc-h p,
+.bloc-j p {
+  margin: 5px;
+}
+
+.active {
+  color: #003366;
+}
+
+/* --------- Media Query --------- */
+
+@media screen and (max-width: 768px) {
+
+  .logo-meteo-menu {
+    width: 60px;
   }
-  
-  .bloc-h p,
-  .bloc-j p {
-    margin: 5px;
+
+  .logo-meteo {
+    margin-top: -30%;
   }
-  
-  .active {
-    color: #003366;
+
+  .avant-appel-api-logo-meteo {
+    width: 200px;
+    margin: 20px;
+  }
+
+  .bloc-info .temps {
+    font-size: 30px;
+  }
+
+  .bloc-info .temperature {
+    font-size: 50px;
+  }
+
+  .bloc-info .localisation {
+    font-size: 30px;
+  }
+
+  .heure-prevision-bloc,
+  .jour-prevision-bloc {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bloc-h,
+  .bloc-j {
+    font-size: 16px;
+  }
+
+  .footer-contributeur {
+    background: linear-gradient(180deg, #1068b6, #f1f1f1);
+  }
 }

@@ -13,8 +13,13 @@ $('.bloc-j').click(function() {
 
 
 $(document).ready(async function () {
-    $(".bloc-h").hide();
-    $(".bloc-j").hide();
+    // $(".bloc-h").hide();
+    $(".heure-prevision-nom").css("visibility", "hidden");
+    $(".heure-prevision-valeur").css("visibility", "hidden");
+
+    // $(".bloc-j").hide();
+    $(".jour-prevision-nom").css("visibility", "hidden");
+    $(".numero-du-jour").css("visibility", "hidden");
 
 
     try {
@@ -39,14 +44,18 @@ const blocsJoursIdPositif = $('.bloc-j').filter(function () {
    quand on clique sur une autre date qu'aujourd'hui */
 blocsJoursIdPositif.on('click', function () {
     console.log(blocsJoursIdPositif.length);
-    $('.bloc-h').hide();
+    // $('.bloc-h').hide();
+    $(".heure-prevision-nom").css("visibility", "hidden");
+    $(".heure-prevision-valeur").css("visibility", "hidden");
 });
 
 
 /* Montre les blocs de météo détaillée des 18 prochaines heures 
    quand on clique sur la date d'aujourd'hui */
 $('.bloc-j[id="-1"]').on('click', function () {
-    $('.bloc-h').show();
+    // $('.bloc-h').show();
+    $(".heure-prevision-nom").css("visibility", "visible");
+    $(".heure-prevision-valeur").css("visibility", "visible");
 });
 
 
@@ -69,8 +78,15 @@ function convertVilleEnCoord(ville) {
                 let lat = infosApi.lat;
                 let lon = infosApi.lon;
                 $(".localisation").text(infosApi.name);
-                $(".bloc-h").show();
-                $(".bloc-j").show();
+                // $(".bloc-h").show();
+                $(".heure-prevision-nom").css("visibility", "visible");
+                $(".heure-prevision-valeur").css("visibility", "visible");
+                $(".avant-appel-api-logo-meteo").removeClass("avant-appel-api-logo-meteo");
+
+                // $(".bloc-j").show();
+                $(".jour-prevision-nom").css("visibility", "visible");
+                $(".numero-du-jour").css("visibility", "visible");
+
                 console.log(response);
                 console.log(infosApi.name);
                 AppelAPI(lat, lon)
@@ -79,8 +95,14 @@ function convertVilleEnCoord(ville) {
                 $(".jour").text('');
                 $(".temps").text('');
                 $(".temperature").text('');
-                $(".bloc-h").hide();
-                $(".bloc-j").hide();
+                // $(".bloc-h").hide();
+                $(".heure-prevision-nom").css("visibility", "hidden");
+                $(".heure-prevision-valeur").css("visibility", "hidden");
+
+                // $(".bloc-j").hide();
+                $(".jour-prevision-nom").css("visibility", "hidden");
+                $(".numero-du-jour").css("visibility", "hidden");
+
                 $(".logo-meteo").attr("src", "ressources/meteo.png");
             }
         },
@@ -100,7 +122,7 @@ function convertVilleEnCoord(ville) {
  * 0 correspond à demain, 1 correspond à après-demain, etc
  */
 function majInfos(numJour) {
-    const dateActuel = new Date()
+    const dateActuel = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     // TODAY
     if (numJour == -1) {
@@ -119,7 +141,9 @@ function majInfos(numJour) {
         let heureActuelle = new Date().getHours();
         const heureAffichee = $('.heure-prevision-nom');
         for (let i = 0; i < heureAffichee.length; i++) {
-            let heureIncr = heureActuelle + i * 3;
+            let heureIncr = heureActuelle + (i+1) * 3;
+
+            console.log(heureAffichee.eq(i-1));
         
             if (heureIncr > 24) {
                 heureAffichee.eq(i).text(`${heureIncr - 24} h`);
@@ -133,7 +157,7 @@ function majInfos(numJour) {
 
         const temperatureParHeureAffichee = $('.heure-prevision-valeur');
         for (let j = 0; j < temperatureParHeureAffichee.length; j++) {
-            temperatureParHeureAffichee.eq(j).text(`${Math.trunc(resultatsAPI.hourly[j * 3].temp)}°`);
+            temperatureParHeureAffichee.eq(j).text(`${Math.trunc(resultatsAPI.hourly[(j+1) * 3].temp)}°`);
         }
 
         const abbreviationJour = $('.jour-prevision-nom');

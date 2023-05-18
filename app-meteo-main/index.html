@@ -14,9 +14,9 @@
 
 <body class="bg-dark">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Logo</a>
-        <!-- <img src="./ressources/meteo.png" alt="logo meteo" class="img-fluid"> -->
+    <nav class="header navbar navbar-expand-lg navbar-light bg-light">
+        <!-- <a class="navbar-brand" href="#">Logo</a> -->
+        <img src="./ressources/meteo.png" alt="logo meteo" class="logo-meteo-menu">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,12 +41,12 @@
 
     <!-- bg-primary, bg-secondary, bg-success, bg-info, bg-warning, bg-danger, bg-light, bg-dark -->
 
-    <div class="d-flex bg-success justify-content-center align-items-center">
+    <div class="big-container d-flex bg-success justify-content-center align-items-center">
 
 
         <div class="container">
 
-            <form id="recupVille" class="mb-3">
+            <form id="recupVille" class="mb-3 p-3 d-flex justify-content-center">
                 <div class="input-group">
                     <input type="text" id="ville" name="ville" class="form-control" placeholder="Rechercher une ville">
                     <button class="btn btn-primary" type="submit">Rechercher</button>
@@ -57,7 +57,7 @@
 
                 <div class="col-md-6">
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="./ressources/meteo.png" alt="logo du temps qu'il fait" class="logo-meteo">
+                        <img src="./ressources/meteo.png" alt="logo du temps qu'il fait" class="avant-appel-api-logo-meteo logo-meteo">
                     </div>
                 </div>
 
@@ -76,33 +76,33 @@
                 <div class="col">
                     <div class="heure-prevision-bloc">
                         <div class="bloc-h">
-                            <p class="heure-prevision-nom">test</p>
-                            <p class="heure-prevision-valeur">test</p>
+                            <p class="heure-prevision-nom">lorem</p>
+                            <p class="heure-prevision-valeur">lorem</p>
                         </div>
                         <div class="bloc-h">
-                            <p class="heure-prevision-nom"></p>
-                            <p class="heure-prevision-valeur"></p>
+                            <p class="heure-prevision-nom">lorem</p>
+                            <p class="heure-prevision-valeur">lorem</p>
                         </div>
                         <div class="bloc-h">
-                            <p class="heure-prevision-nom"></p>
-                            <p class="heure-prevision-valeur"></p>
+                            <p class="heure-prevision-nom">lorem</p>
+                            <p class="heure-prevision-valeur">lorem</p>
                         </div>
                         <div class="bloc-h">
-                            <p class="heure-prevision-nom"></p>
-                            <p class="heure-prevision-valeur"></p>
+                            <p class="heure-prevision-nom">lorem</p>
+                            <p class="heure-prevision-valeur">lorem</p>
                         </div>
                         <div class="bloc-h">
-                            <p class="heure-prevision-nom"></p>
-                            <p class="heure-prevision-valeur"></p>
+                            <p class="heure-prevision-nom">lorem</p>
+                            <p class="heure-prevision-valeur">lorem</p>
                         </div>
                         <div class="bloc-h">
+                            <p class="heure-prevision-nom">lorem</p>
+                            <p class="heure-prevision-valeur">lorem</p>
+                        </div>
+                        <!-- <div class="bloc-h">
                             <p class="heure-prevision-nom"></p>
                             <p class="heure-prevision-valeur"></p>
-                        </div>
-                        <div class="bloc-h">
-                            <p class="heure-prevision-nom"></p>
-                            <p class="heure-prevision-valeur"></p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -112,33 +112,33 @@
                     <div class="jour-prevision-bloc">
                         <!-- Jours de prévision -->
                         <div class="bloc-j active" id="-1">
-                            <p class="jour-prevision-nom"></p>
-                            <p class="numero-du-jour"></p>
+                            <p class="jour-prevision-nom">lorem</p>
+                            <p class="numero-du-jour">lorem</p>
                         </div>
                         <div class="bloc-j" id="0">
-                            <p class="jour-prevision-nom"></p>
-                            <p class="numero-du-jour"></p>
+                            <p class="jour-prevision-nom">lorem</p>
+                            <p class="numero-du-jour">lorem</p>
                         </div>
                         <div class="bloc-j" id="1">
-                            <p class="jour-prevision-nom"></p>
-                            <p class="numero-du-jour"></p>
+                            <p class="jour-prevision-nom">lorem</p>
+                            <p class="numero-du-jour">lorem</p>
                         </div>
                         <div class="bloc-j" id="2">
-                            <p class="jour-prevision-nom"></p>
-                            <p class="numero-du-jour"></p>
+                            <p class="jour-prevision-nom">lorem</p>
+                            <p class="numero-du-jour">lorem</p>
                         </div>
                         <div class="bloc-j" id="3">
-                            <p class="jour-prevision-nom"></p>
-                            <p class="numero-du-jour"></p>
+                            <p class="jour-prevision-nom">lorem</p>
+                            <p class="numero-du-jour">lorem</p>
                         </div>
                         <div class="bloc-j" id="4">
+                            <p class="jour-prevision-nom">lorem</p>
+                            <p class="numero-du-jour">lorem</p>
+                        </div>
+                        <!-- <div class="bloc-j" id="5">
                             <p class="jour-prevision-nom"></p>
                             <p class="numero-du-jour"></p>
-                        </div>
-                        <div class="bloc-j" id="5">
-                            <p class="jour-prevision-nom"></p>
-                            <p class="numero-du-jour"></p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -253,9 +253,10 @@
     </div>
 
 
-    <footer class="footer">
-        <div class="container-md d-flex justify-content-center align-items-center bg-light">
-            <p>Contributeur : Liam LE NY et Flavien MEZIRARD</p>
+    <footer>
+        <div class="footer-contributeur container-md d-flex flex-column justify-content-center align-items-center bg-light p-3">
+            <p>Contributeurs :</p>
+            <p>Liam LE NY et Flavien MEZIRARD</p>
         </div>
     </footer>
 
