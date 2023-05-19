@@ -6,13 +6,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aide</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="content">
-    <div id="menu">
+  <nav class="header navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <a class="navbar-brand" href="#">Logo</a> -->
+    <a href="index.html"><img src="./ressources/meteo.png" alt="logo meteo" class="logo-meteo-menu"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="aide.html">Aide</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- <div id="menu">
 
       <ul>
         <a href="index.html">
@@ -26,60 +54,75 @@
         </a>
       </ul>
 
+    </div> -->
+
+  <div class="big-container-aide big-container d-flex bg-success justify-content-center align-items-center">
+
+    <div class="aide-container container d-flex justify-content-center flex-column p-4">
+
+      <section>
+        <p class="text-light">Pour utiliser le site météorologique, suivez les étapes suivantes :</p>
+        <ol>
+          <li>Accédez à la page d'accueil.</li>
+          <li>Dans la barre de recherche, saisissez le nom de la ville dont vous souhaitez connaître la météo.</li>
+          <li>Appuyez sur la touche "Entrée".</li>
+          <li>La météo actuelle de la ville s'affichera.</li>
+          <li>Si vous souhaiter connaître la météo pour un autre jour, vous pouvez cliquer sur la case correspondate à
+            ce
+            jour en bas de votre écran.</li>
+          <li>Vous pouvez également utiliser le formulaire de contact pour nous envoyer un message si vous avez des
+            questions
+            ou des commentaires.</li>
+        </ol>
+      </section>
+
+      <section class="section-faq">
+        <h2>FAQ</h2>
+
+        <details>
+          <summary class="text-light">Q : Comment fonctionne la recherche de météo ?</summary>
+          <p class="m-2">La recherche de météo se base sur une API météorologique qui fournit les données en temps réel.
+            Lorsque
+            vous saisissez le nom de la ville et effectuez la recherche, le site envoie une requête à l'API et
+            récupère
+            les informations de météo correspondantes.</p>
+        </details>
+
+        <details>
+          <summary class="text-light">Q : Les prévisions météorologiques sont-elles fiables ?</summary>
+          <p class="m-2">Les prévisions météorologiques sont basées sur des modèles mathématiques complexes et peuvent
+            fournir
+            une
+            estimation précise dans de nombreux cas. Cependant, il est important de noter que la météo est sujette à
+            des
+            changements et que les prévisions peuvent varier. Il est toujours recommandé de consulter les sources
+            météorologiques officielles pour les informations les plus à jour.</p>
+        </details>
+
+      </section>
+
     </div>
 
-    <div class="big-container-aide">
-
-      <div class="aide-container">
-
-        <section>
-          <p>Pour utiliser le site météorologique, suivez les étapes suivantes :</p>
-          <ol>
-            <li>Accédez à la page d'accueil.</li>
-            <li>Dans la barre de recherche, saisissez le nom de la ville dont vous souhaitez connaître la météo.</li>
-            <li>Appuyez sur la touche "Entrée".</li>
-            <li>La météo actuelle de la ville s'affichera.</li>
-            <li>Si vous souhaiter connaître la météo pour un autre jour, vous pouvez cliquer sur la case correspondate à
-              ce
-              jour en bas de votre écran.</li>
-            <li>Vous pouvez également utiliser le formulaire de contact pour nous envoyer un message si vous avez des
-              questions
-              ou des commentaires.</li>
-          </ol>
-        </section>
-
-        <section class="section-faq">
-          <h2>FAQ</h2>
-
-          <details>
-            <summary>Q : Comment fonctionne la recherche de météo ?</summary>
-            <p>R : La recherche de météo se base sur une API météorologique qui fournit les données en temps réel.
-              Lorsque
-              vous saisissez le nom de la ville et effectuez la recherche, le site envoie une requête à l'API et
-              récupère
-              les informations de météo correspondantes.</p>
-          </details>
-
-          <details>
-            <summary>Q : Les prévisions météorologiques sont-elles fiables ?</summary>
-            <p>R : Les prévisions météorologiques sont basées sur des modèles mathématiques complexes et peuvent fournir
-              une
-              estimation précise dans de nombreux cas. Cependant, il est important de noter que la météo est sujette à
-              des
-              changements et que les prévisions peuvent varier. Il est toujours recommandé de consulter les sources
-              météorologiques officielles pour les informations les plus à jour.</p>
-          </details>
-
-        </section>
-
-      </div>
-
-    </div>
   </div>
 
   <footer>
-    <p>Contributeur : Liam LE NY et Flavien MEZIRARD</p>
+    <div
+      class="footer-contributeur container-md d-flex flex-column justify-content-center align-items-center bg-light p-3">
+      <p>Contributeurs :</p>
+      <p>Liam LE NY et Flavien MEZIRARD</p>
+    </div>
   </footer>
+
+  <!-- JavaScript for Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
 </body>
 

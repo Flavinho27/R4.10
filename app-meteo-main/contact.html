@@ -6,11 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="menu">
+
+    <nav class="header navbar navbar-expand-lg navbar-light bg-light">
+        <!-- <a class="navbar-brand" href="#">Logo</a> -->
+        <a href="index.html"><img src="./ressources/meteo.png" alt="logo meteo" class="logo-meteo-menu"></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Accueil</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="aide.html">Aide</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- <div id="menu">
 
         <ul>
             <a href="index.html">
@@ -24,31 +55,31 @@
             </a>
         </ul>
 
-    </div>
+    </div> -->
 
-    <h2 id="title-contact">Page de contact</h2>
 
-    <div class="big-container-formulaire">
+    <div class="big-container-formulaire big-container d-flex bg-success justify-content-center align-items-center">
 
-        <div class="container-formulaire">
+        <div class="container-formulaire container d-flex justify-content-center align-items-center flex-column">
+            <h2 id="title-contact">Page de contact</h2>
 
-            <form action="">
-                <div class="bloc-input">
+            <form action="" class="d-flex flex-column">
+                <div class="bloc-input d-flex flex-column text-light p-3">
                     <label for="email">Email :</label>
                     <input type="email" id="email">
                 </div>
 
-                <div class="bloc-input">
+                <div class="bloc-input d-flex flex-column text-light p-3">
                     <label for="prenom">Prenom :</label>
                     <input type="text" id="prenom">
                 </div>
 
-                <div class="bloc-input">
+                <div class="bloc-input d-flex flex-column text-light p-3">
                     <label for="prenom" id="message">Message :</label>
                     <textarea id="message" rows="5" cols="33" placeholder="Message..."></textarea>
                 </div>
 
-                <div class="bloc-button">
+                <div class="bloc-button p-3 text-center">
                     <button>Envoyer</button>
                 </div>
             </form>
@@ -59,8 +90,23 @@
 
 
     <footer>
-        <p>Contributeur : Liam LENY et Flavien MEZIRARD</p>
+        <div
+            class="footer-contributeur container-md d-flex flex-column justify-content-center align-items-center bg-light p-3">
+            <p>Contributeurs :</p>
+            <p>Liam LE NY et Flavien MEZIRARD</p>
+        </div>
     </footer>
+
+    <!-- JavaScript for Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
