@@ -27,8 +27,6 @@ body {
 .container {
   background: linear-gradient(45deg, #1068b6, #ec60a6);
   border: 1px solid #f1f1f1;
-  /* padding: 20px; */
-  /* min-height: 400px; */
 }
 
 .input-group {
@@ -36,15 +34,10 @@ body {
   max-width: 400px;
 }
 
-
-
 .logo-meteo {
   width: 80%;
-  /* max-width: 200px; */
   margin-top: -15%;
-  /* margin-bottom: -10%; */
 }
-
 
 .avant-appel-api-logo-meteo {
   width: 250px;
@@ -64,6 +57,24 @@ body {
   word-wrap: break-word;
 }
 
+.info-supp-bloc {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.info-supp-nom {
+  min-height: 60px;
+}
+
+.info-supp-nom-et-valeur {
+  background: #e9e9e9;
+  padding: 10px;
+}
+
+.info-supp-nom-et-valeur:nth-child(odd) {
+  background: #d1d1d1;
+}
+
 .heure-prevision-nom,
 .jour-prevision-nom {
   color: #fff;
@@ -72,12 +83,7 @@ body {
 .heure-prevision-bloc,
 .jour-prevision-bloc {
   display: grid;
-  /* grid-template-columns: repeat(7, 1fr); */
-  /* Je veux 4 colonnes minimum dans mon css grid */
   grid-template-columns: repeat(auto-fit, minmax(67px, 1fr));
-
-  /* grid-gap: 10px; */
-  /* margin-bottom: 20px; */
 }
 
 .heure-prevision-bloc {
@@ -94,7 +100,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* border-top: 1px solid #f1f1f1; */
   font-size: 21px;
   border: 1px solid #f1f1f1;
 }
@@ -103,11 +108,6 @@ body {
   cursor: pointer;
   background: rgba(236, 96, 166, 0.6);
 }
-
-/* .bloc-h:not(:last-child),
-  .bloc-j:not(:last-child) {
-    border-right: 1px solid #f1f1f1;
-  } */
 
 .bloc-h p,
 .bloc-j p {
@@ -119,7 +119,7 @@ body {
   color: #1068b6;
 }
 
-/* ---------- Contact ---------- */
+/* ---------- Page Contact ---------- */
 
 #title-contact {
   color: #fff;
@@ -128,7 +128,7 @@ body {
   margin: 20px;
 }
 
-/* ---------- Aide ---------- */
+/* ---------- Page Aide ---------- */
 
 .aide-container {
   min-height: 500px;
@@ -161,6 +161,10 @@ body {
 
   .bloc-info .localisation {
     font-size: 30px;
+  }
+
+  .info-supp-bloc {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .heure-prevision-bloc,

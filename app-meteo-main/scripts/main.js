@@ -138,6 +138,8 @@ function majInfos(numJour) {
         $(".vent").text(resultatsAPI.current.wind_speed);
         $(".pressionAtmospherique").text(resultatsAPI.current.pressure);
 
+        console.log(resultatsAPI.current);
+
         let heureActuelle = new Date().getHours();
         const heureAffichee = $('.heure-prevision-nom');
         for (let i = 0; i < heureAffichee.length; i++) {
