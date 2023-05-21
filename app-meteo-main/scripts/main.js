@@ -4,7 +4,7 @@ const APIKEY = '1db618f01129e97ae866956a56ec549f';
 let resultatsAPI;
 
 
-$('.bloc-j').click(function() {
+$('.bloc-j').click(function () {
     $('.bloc-j').removeClass('active');
     $(this).addClass('active');
     majInfos($(this).attr('id'));
@@ -13,11 +13,9 @@ $('.bloc-j').click(function() {
 
 
 $(document).ready(async function () {
-    // $(".bloc-h").hide();
     $(".heure-prevision-nom").css("visibility", "hidden");
     $(".heure-prevision-valeur").css("visibility", "hidden");
 
-    // $(".bloc-j").hide();
     $(".jour-prevision-nom").css("visibility", "hidden");
     $(".numero-du-jour").css("visibility", "hidden");
 
@@ -40,22 +38,27 @@ const blocsJoursIdPositif = $('.bloc-j').filter(function () {
     return parseInt($(this).attr('id')) >= 0;
 });
 
-/* Cache les blocs de météo détaillée des 18 prochaines heures 
+/* Cache les valeurs blocs de météo détaillée des 18 prochaines heures 
    quand on clique sur une autre date qu'aujourd'hui */
 blocsJoursIdPositif.on('click', function () {
-    console.log(blocsJoursIdPositif.length);
-    // $('.bloc-h').hide();
     $(".heure-prevision-nom").css("visibility", "hidden");
     $(".heure-prevision-valeur").css("visibility", "hidden");
+    $('.info-supp-nom p').filter(function() {
+        return $(this).text() === 'Température Ressenti';
+      }).text('Température Maximale');
+      $('.temperatureRessenti').removeClass('temperatureRessenti').addClass('temperatureMax');
 });
 
 
-/* Montre les blocs de météo détaillée des 18 prochaines heures 
+/* Montre les valeurs blocs de météo détaillée des 18 prochaines heures 
    quand on clique sur la date d'aujourd'hui */
 $('.bloc-j[id="-1"]').on('click', function () {
-    // $('.bloc-h').show();
     $(".heure-prevision-nom").css("visibility", "visible");
     $(".heure-prevision-valeur").css("visibility", "visible");
+    $('.info-supp-nom p').filter(function() {
+        return $(this).text() === 'Température Maximale';
+      }).text('Température Ressenti');
+      $('.temperatureMax').removeClass('temperatureMax').addClass('temperatureRessenti');
 });
 
 
@@ -78,28 +81,22 @@ function convertVilleEnCoord(ville) {
                 let lat = infosApi.lat;
                 let lon = infosApi.lon;
                 $(".localisation").text(infosApi.name);
-                // $(".bloc-h").show();
                 $(".heure-prevision-nom").css("visibility", "visible");
                 $(".heure-prevision-valeur").css("visibility", "visible");
                 $(".avant-appel-api-logo-meteo").removeClass("avant-appel-api-logo-meteo");
 
-                // $(".bloc-j").show();
                 $(".jour-prevision-nom").css("visibility", "visible");
                 $(".numero-du-jour").css("visibility", "visible");
 
-                console.log(response);
-                console.log(infosApi.name);
                 AppelAPI(lat, lon)
             } else {
                 $(".localisation").text('Ville non trouvée');
                 $(".jour").text('');
                 $(".temps").text('');
                 $(".temperature").text('');
-                // $(".bloc-h").hide();
                 $(".heure-prevision-nom").css("visibility", "hidden");
                 $(".heure-prevision-valeur").css("visibility", "hidden");
 
-                // $(".bloc-j").hide();
                 $(".jour-prevision-nom").css("visibility", "hidden");
                 $(".numero-du-jour").css("visibility", "hidden");
 
@@ -143,10 +140,8 @@ function majInfos(numJour) {
         let heureActuelle = new Date().getHours();
         const heureAffichee = $('.heure-prevision-nom');
         for (let i = 0; i < heureAffichee.length; i++) {
-            let heureIncr = heureActuelle + (i+1) * 3;
+            let heureIncr = heureActuelle + (i + 1) * 3;
 
-            console.log(heureAffichee.eq(i-1));
-        
             if (heureIncr > 24) {
                 heureAffichee.eq(i).text(`${heureIncr - 24} h`);
             } else if (heureIncr === 24) {
@@ -155,11 +150,11 @@ function majInfos(numJour) {
                 heureAffichee.eq(i).text(`${heureIncr} h`);
             }
         }
-        
+
 
         const temperatureParHeureAffichee = $('.heure-prevision-valeur');
         for (let j = 0; j < temperatureParHeureAffichee.length; j++) {
-            temperatureParHeureAffichee.eq(j).text(`${Math.trunc(resultatsAPI.hourly[(j+1) * 3].temp)}°`);
+            temperatureParHeureAffichee.eq(j).text(`${Math.trunc(resultatsAPI.hourly[(j + 1) * 3].temp)}°`);
         }
 
         const abbreviationJour = $('.jour-prevision-nom');
@@ -167,14 +162,14 @@ function majInfos(numJour) {
             abbreviationJour.eq(k).text(tabJoursEnOrdre[k].slice(0, 3));
         }
 
-        const numeroJour =  $('.numero-du-jour');
+        const numeroJour = $('.numero-du-jour');
         for (let j = 0; j < 7; j++) {
             let jour = new Date(dateActuel);
             jour.setDate(jour.getDate() + j);
             numJour = jour.getDate();
             numeroJour.eq(j).text(numJour);
         }
-        
+
 
         if (6 < heureActuelle && heureActuelle < 21) {
             $(".logo-meteo").attr("src", `ressources/jour/${resultatsAPI.current.weather[0].icon}.svg`);
@@ -191,13 +186,14 @@ function majInfos(numJour) {
         let jourFormate = jourClique.toLocaleDateString('fr-FR', options);
         // Met la première lettre en majuscule
         jourFormate = jourFormate.charAt(0).toUpperCase() + jourFormate.slice(1);
+        console.log(resultatsAPI);
         $(".jour").text(jourFormate);
         $(".temps").text(resultatsAPI.daily[numJour].weather[0].description);
         $(".temperature").text(`${Math.trunc(resultatsAPI.daily[numJour].temp.day)}°`);
         $(".humidite").text(resultatsAPI.daily[numJour].humidity);
         $(".vent").text(resultatsAPI.daily[numJour].wind_speed);
-        $(".temperatureMin").text(resultatsAPI.daily[numJour].temp.min);
-        $(".temperatureMax").text(resultatsAPI.daily[numJour].temp.max);
+        $(".UV").text(`${Math.trunc(resultatsAPI.daily[numJour].uvi)}°`);
+        $(".temperatureMax").text(`${Math.trunc(resultatsAPI.daily[numJour].temp.max)}°`);
         $(".pressionAtmospherique").text(resultatsAPI.daily[numJour].pressure);
 
         $(".logo-meteo").attr("src", `ressources/jour/${resultatsAPI.daily[numJour].weather[0].icon}.svg`);
