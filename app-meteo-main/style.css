@@ -136,6 +136,12 @@ body {
 
 /* --------- Media Query --------- */
 
+@media screen and (max-width: 1200px) {
+  .info-supp-bloc {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media screen and (max-width: 768px) {
 
   .logo-meteo-menu {
