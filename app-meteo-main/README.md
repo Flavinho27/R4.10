@@ -1,6 +1,6 @@
-# TP1
+# TP2
 --------------------------------------------------
--- Développeurs : Liam LENY et Flavien MEZIRARD --
+-- Développeurs : Liam LE NY et Flavien MEZIRARD --
 --------------------------------------------------
 
 Bonjour et merci d'avoir télécharger notre application météo !
