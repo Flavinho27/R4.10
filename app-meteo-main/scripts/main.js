@@ -39,26 +39,32 @@ const blocsJoursIdPositif = $('.bloc-j').filter(function () {
 });
 
 /* Cache les valeurs blocs de météo détaillée des 18 prochaines heures 
-   quand on clique sur une autre date qu'aujourd'hui */
+   quand on clique sur une autre date qu'aujourd'hui
+   Permet aussi de remplacer la température minimale par la température
+   ressenti */
 blocsJoursIdPositif.on('click', function () {
     $(".heure-prevision-nom").css("visibility", "hidden");
     $(".heure-prevision-valeur").css("visibility", "hidden");
     $('.info-supp-nom p').filter(function() {
         return $(this).text() === 'Température Ressenti';
-      }).text('Température Maximale');
-      $('.temperatureRessenti').removeClass('temperatureRessenti').addClass('temperatureMax');
+      }).text('Température Minimale');
+      $('.temperatureRessenti').removeClass('temperatureRessenti').addClass('temperatureMin');
+      majInfos($(this).attr('id'));
 });
 
 
 /* Montre les valeurs blocs de météo détaillée des 18 prochaines heures 
-   quand on clique sur la date d'aujourd'hui */
+   quand on clique sur la date d'aujourd'hui 
+   Permet aussi de remplacer la température ressenti par la température
+   minimale */
 $('.bloc-j[id="-1"]').on('click', function () {
     $(".heure-prevision-nom").css("visibility", "visible");
     $(".heure-prevision-valeur").css("visibility", "visible");
     $('.info-supp-nom p').filter(function() {
-        return $(this).text() === 'Température Maximale';
+        return $(this).text() === 'Température Minimale';
       }).text('Température Ressenti');
-      $('.temperatureMax').removeClass('temperatureMax').addClass('temperatureRessenti');
+      $('.temperatureMin').removeClass('temperatureMin').addClass('temperatureRessenti');
+      $(".temperatureRessenti").text(`${Math.trunc(resultatsAPI.current.feels_like)}°`);
 });
 
 
@@ -131,12 +137,11 @@ function majInfos(numJour) {
         $(".temperature").text(`${Math.trunc(resultatsAPI.current.temp)}°`);
         $(".temperatureRessenti").text(`${Math.trunc(resultatsAPI.current.feels_like)}°`);
         $(".UV").text(`${Math.trunc(resultatsAPI.current.uvi)}°`);
-        $(".humidite").text(resultatsAPI.current.humidity);
-        $(".vent").text(resultatsAPI.current.wind_speed);
-        $(".pressionAtmospherique").text(resultatsAPI.current.pressure);
-
-        console.log(resultatsAPI.current);
-
+        $(".humidite").text(`${resultatsAPI.current.humidity}%`);
+        let ventKMH = convertMSenKH(resultatsAPI.current.wind_speed);
+        $(".vent").text(`${ventKMH} km/h`);
+        $(".pressionAtmospherique").text(`${resultatsAPI.current.pressure} hpa`);
+        
         let heureActuelle = new Date().getHours();
         const heureAffichee = $('.heure-prevision-nom');
         for (let i = 0; i < heureAffichee.length; i++) {
@@ -186,15 +191,16 @@ function majInfos(numJour) {
         let jourFormate = jourClique.toLocaleDateString('fr-FR', options);
         // Met la première lettre en majuscule
         jourFormate = jourFormate.charAt(0).toUpperCase() + jourFormate.slice(1);
-        console.log(resultatsAPI);
+
         $(".jour").text(jourFormate);
         $(".temps").text(resultatsAPI.daily[numJour].weather[0].description);
         $(".temperature").text(`${Math.trunc(resultatsAPI.daily[numJour].temp.day)}°`);
-        $(".humidite").text(resultatsAPI.daily[numJour].humidity);
-        $(".vent").text(resultatsAPI.daily[numJour].wind_speed);
+        $(".humidite").text(`${resultatsAPI.daily[numJour].humidity}%`);
+        let ventKMH = convertMSenKH(resultatsAPI.daily[numJour].wind_speed);
+        $(".vent").text(`${ventKMH} km/h`);
         $(".UV").text(`${Math.trunc(resultatsAPI.daily[numJour].uvi)}°`);
-        $(".temperatureMax").text(`${Math.trunc(resultatsAPI.daily[numJour].temp.max)}°`);
-        $(".pressionAtmospherique").text(resultatsAPI.daily[numJour].pressure);
+        $(".temperatureMin").text(`${Math.trunc(resultatsAPI.daily[numJour].temp.min)}°`);
+        $(".pressionAtmospherique").text(`${resultatsAPI.daily[numJour].pressure} hpa`);
 
         $(".logo-meteo").attr("src", `ressources/jour/${resultatsAPI.daily[numJour].weather[0].icon}.svg`);
 
@@ -225,4 +231,14 @@ function AppelAPI(lat, lon) {
             majInfos(-1);
         }
     });
+}
+
+/**
+ * Permet de convertit une vitesse exprimé en mètre par seconde
+ * en kilométre par heure
+ * @param {*} vitesseMS vitesse en m/s
+ * @returns vitesse en km/h
+ */
+function convertMSenKH(vitesseMS) {
+    return (Math.trunc(vitesseMS * 3.6))
 }
