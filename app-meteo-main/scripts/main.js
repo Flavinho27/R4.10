@@ -45,11 +45,11 @@ const blocsJoursIdPositif = $('.bloc-j').filter(function () {
 blocsJoursIdPositif.on('click', function () {
     $(".heure-prevision-nom").css("visibility", "hidden");
     $(".heure-prevision-valeur").css("visibility", "hidden");
-    $('.info-supp-nom p').filter(function() {
+    $('.info-supp-nom p').filter(function () {
         return $(this).text() === 'Température Ressenti';
-      }).text('Température Minimale');
-      $('.temperatureRessenti').removeClass('temperatureRessenti').addClass('temperatureMin');
-      majInfos($(this).attr('id'));
+    }).text('Température Minimale');
+    $('.temperatureRessenti').removeClass('temperatureRessenti').addClass('temperatureMin');
+    majInfos($(this).attr('id'));
 });
 
 
@@ -60,30 +60,26 @@ blocsJoursIdPositif.on('click', function () {
 $('.bloc-j[id="-1"]').on('click', function () {
     $(".heure-prevision-nom").css("visibility", "visible");
     $(".heure-prevision-valeur").css("visibility", "visible");
-    $('.info-supp-nom p').filter(function() {
+    $('.info-supp-nom p').filter(function () {
         return $(this).text() === 'Température Minimale';
-      }).text('Température Ressenti');
-      $('.temperatureMin').removeClass('temperatureMin').addClass('temperatureRessenti');
-      $(".temperatureRessenti").text(`${Math.trunc(resultatsAPI.current.feels_like)}°`);
+    }).text('Température Ressenti');
+    $('.temperatureMin').removeClass('temperatureMin').addClass('temperatureRessenti');
+    $(".temperatureRessenti").text(`${Math.trunc(resultatsAPI.current.feels_like)}°`);
 });
 
 
 
-/**
- * Permet d'obtenir les coordonnées d'une ville en fonction de son nom
- * @param {*} ville le nom de la ville dont on souhaite obtenir les coordonnées
- */
 function convertVilleEnCoord(ville) {
-    $.ajax({
-        url: `http://api.openweathermap.org/geo/1.0/direct`,
-        data: {
+    axios.get('http://api.openweathermap.org/geo/1.0/direct', {
+        params: {
             q: ville,
             limit: 1,
             appid: APIKEY
-        },
-        success: function (response) {
-            if (response[0]) {
-                let infosApi = response[0];
+        }
+    })
+        .then(response => {
+            if (response.data[0]) {
+                let infosApi = response.data[0];
                 let lat = infosApi.lat;
                 let lon = infosApi.lon;
                 $(".localisation").text(infosApi.name);
@@ -93,8 +89,7 @@ function convertVilleEnCoord(ville) {
 
                 $(".jour-prevision-nom").css("visibility", "visible");
                 $(".numero-du-jour").css("visibility", "visible");
-
-                AppelAPI(lat, lon)
+                AppelAPI(lat, lon);
             } else {
                 $(".localisation").text('Ville non trouvée');
                 $(".jour").text('');
@@ -108,12 +103,12 @@ function convertVilleEnCoord(ville) {
 
                 $(".logo-meteo").attr("src", "ressources/meteo.png");
             }
-        },
-        error: function (error) {
-            console.error("Erreur lors de l'appel de l'API :", error);
-        }
-    });
+        })
+        .catch(error => {
+            console.error("Erreur lors de l'appel de l'API de conversion de la ville en coordonnées :", error);
+        });
 }
+
 
 
 /**
@@ -141,7 +136,7 @@ function majInfos(numJour) {
         let ventKMH = convertMSenKH(resultatsAPI.current.wind_speed);
         $(".vent").text(`${ventKMH} km/h`);
         $(".pressionAtmospherique").text(`${resultatsAPI.current.pressure} hpa`);
-        
+
         let heureActuelle = new Date().getHours();
         const heureAffichee = $('.heure-prevision-nom');
         for (let i = 0; i < heureAffichee.length; i++) {
@@ -216,22 +211,25 @@ function majInfos(numJour) {
  * @param {*} lon longitude
  */
 function AppelAPI(lat, lon) {
-    $.ajax({
-        url: `https://api.openweathermap.org/data/2.5/onecall`,
-        data: {
-            lat: lat,
-            lon: lon,
-            exclude: "minutely",
-            units: "metric",
-            lang: "fr",
-            appid: APIKEY
-        },
-        success: function (response) {
-            resultatsAPI = response;
-            majInfos(-1);
-        }
+    axios.get('https://api.openweathermap.org/data/2.5/onecall', {
+      params: {
+        lat: lat,
+        lon: lon,
+        exclude: "minutely",
+        units: "metric",
+        lang: "fr",
+        appid: APIKEY
+      }
+    })
+    .then(function (response) {
+      resultatsAPI = response.data;
+      majInfos(-1);
+    })
+    .catch(function (error) {
+        console.error("Erreur lors de l'appel de l'API de récupération des données météo :", error);
     });
-}
+  }
+  
 
 /**
  * Permet de convertit une vitesse exprimé en mètre par seconde
