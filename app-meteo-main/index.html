@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
@@ -135,40 +138,33 @@
 
             <div class="row">
                 <div class="col">
-                    <div class="heure-prevision-bloc">
-                        <div class="bloc-h">
-                            <p class="heure-prevision-nom">lorem</p>
-                            <p class="heure-prevision-valeur">lorem</p>
-                        </div>
-                        <div class="bloc-h">
-                            <p class="heure-prevision-nom">lorem</p>
-                            <p class="heure-prevision-valeur">lorem</p>
-                        </div>
-                        <div class="bloc-h">
-                            <p class="heure-prevision-nom">lorem</p>
-                            <p class="heure-prevision-valeur">lorem</p>
-                        </div>
-                        <div class="bloc-h">
-                            <p class="heure-prevision-nom">lorem</p>
-                            <p class="heure-prevision-valeur">lorem</p>
-                        </div>
-                        <div class="bloc-h">
-                            <p class="heure-prevision-nom">lorem</p>
-                            <p class="heure-prevision-valeur">lorem</p>
-                        </div>
-                        <div class="bloc-h">
-                            <p class="heure-prevision-nom">lorem</p>
-                            <p class="heure-prevision-valeur">lorem</p>
-                        </div>
+                    <div class="heure-prevision-bloc" id="heure-prevision-bloc">
+
+                        <heure-prevision-bloc v-for="prevision in previsions" :key="prevision.id" :nom="prevision.nom" :valeur="prevision.valeur"></heure-prevision-bloc>
+
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <div class="jour-prevision-bloc">
+                    <div class="jour-prevision-bloc" id="jour-prevision-bloc">
+
+                        <jour-prevision-bloc v-for="jour in jours" :key="jour.id"></jour-prevision-bloc>
+
                         <!-- Jours de prévision -->
-                        <div class="bloc-j active" id="-1">
+                        <!-- <div
+                            v-for="jour in jours"
+                            :key="jour.id"
+                            :class="['bloc-j', { active: jour.id === jourActif }]"
+                            @click="changerJour(jour.id)"
+                        >
+                            <p class="jour-prevision-nom">{{ jour.nom }}</p>
+                            <p class="numero-du-jour">{{ jour.numero }}</p>
+                        </div> -->
+
+                        <!-- Jours de prévision -->
+                        <!-- <div class="bloc-j active" id="-1">
                             <p class="jour-prevision-nom">lorem</p>
                             <p class="numero-du-jour">lorem</p>
                         </div>
@@ -191,7 +187,7 @@
                         <div class="bloc-j" id="4">
                             <p class="jour-prevision-nom">lorem</p>
                             <p class="numero-du-jour">lorem</p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
