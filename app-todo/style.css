@@ -1,0 +1,26 @@
+*,
+::after,
+::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: linear-gradient(45deg, rgb(59, 50, 50), rgb(22, 28, 29));
+}
+
+body {
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f1f1f1;
+    background: linear-gradient(45deg, rgb(59, 50, 50), rgb(22, 28, 29));
+}
+
+a {
+    text-decoration: none;
+}
+
+.content {
+    min-height: 100%;
+}
