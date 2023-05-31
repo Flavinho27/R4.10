@@ -140,6 +140,7 @@
                 <div class="col">
                     <div class="heure-prevision-bloc" id="heure-prevision-bloc">
 
+                        <!-- Heures de prévision -->
                         <heure-prevision-bloc v-for="prevision in previsions" :key="prevision.id" :nom="prevision.nom" :valeur="prevision.valeur"></heure-prevision-bloc>
 
                     </div>
@@ -150,44 +151,9 @@
                 <div class="col">
                     <div class="jour-prevision-bloc" id="jour-prevision-bloc">
 
-                        <jour-prevision-bloc v-for="jour in jours" :key="jour.id"></jour-prevision-bloc>
-
                         <!-- Jours de prévision -->
-                        <!-- <div
-                            v-for="jour in jours"
-                            :key="jour.id"
-                            :class="['bloc-j', { active: jour.id === jourActif }]"
-                            @click="changerJour(jour.id)"
-                        >
-                            <p class="jour-prevision-nom">{{ jour.nom }}</p>
-                            <p class="numero-du-jour">{{ jour.numero }}</p>
-                        </div> -->
+                        <jour-prevision-bloc v-for="jour in jours" :key="jour.id" :id="jour.id" :class="['bloc-j', { active: jour.id === jourActif }]"></jour-prevision-bloc>
 
-                        <!-- Jours de prévision -->
-                        <!-- <div class="bloc-j active" id="-1">
-                            <p class="jour-prevision-nom">lorem</p>
-                            <p class="numero-du-jour">lorem</p>
-                        </div>
-                        <div class="bloc-j" id="0">
-                            <p class="jour-prevision-nom">lorem</p>
-                            <p class="numero-du-jour">lorem</p>
-                        </div>
-                        <div class="bloc-j" id="1">
-                            <p class="jour-prevision-nom">lorem</p>
-                            <p class="numero-du-jour">lorem</p>
-                        </div>
-                        <div class="bloc-j" id="2">
-                            <p class="jour-prevision-nom">lorem</p>
-                            <p class="numero-du-jour">lorem</p>
-                        </div>
-                        <div class="bloc-j" id="3">
-                            <p class="jour-prevision-nom">lorem</p>
-                            <p class="numero-du-jour">lorem</p>
-                        </div>
-                        <div class="bloc-j" id="4">
-                            <p class="jour-prevision-nom">lorem</p>
-                            <p class="numero-du-jour">lorem</p>
-                        </div> -->
                     </div>
                 </div>
             </div>

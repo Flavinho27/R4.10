@@ -1,3 +1,62 @@
+// ---------------------------------------------- \\
+// Vue component for the main weather information \\
+// ---------------------------------------------- \\
+
+Vue.component('heure-prevision-bloc', {
+    props: ['nom', 'valeur'],
+    template: `
+      <div class="bloc-h">
+        <p class="heure-prevision-nom">{{ nom }}</p>
+        <p class="heure-prevision-valeur">{{ valeur }}</p>
+      </div>
+    `
+});
+
+new Vue({
+    el: '#heure-prevision-bloc',
+    data: {
+        previsions: [
+            { id: 1, nom: 'lorem', valeur: 'lorem' },
+            { id: 2, nom: 'lorem', valeur: 'lorem' },
+            { id: 3, nom: 'lorem', valeur: 'lorem' },
+            { id: 4, nom: 'lorem', valeur: 'lorem' },
+            { id: 5, nom: 'lorem', valeur: 'lorem' },
+            { id: 6, nom: 'lorem', valeur: 'lorem' }
+        ]
+    }
+});
+
+
+Vue.component('jour-prevision-bloc', {
+    props: ['id', 'nom', 'numero'],
+    template: `
+    <div :id="id">
+        <p class="jour-prevision-nom">{{ nom }}</p>
+        <p class="numero-du-jour">{{ numero }}</p>
+    </div>
+    `
+});
+
+new Vue({
+    el: '#jour-prevision-bloc',
+    data: {
+        jours: [
+            { id: -1, nom: 'lorem', numero: 'lorem' },
+            { id: 0, nom: 'lorem', numero: 'lorem' },
+            { id: 1, nom: 'lorem', numero: 'lorem' },
+            { id: 2, nom: 'lorem', numero: 'lorem' },
+            { id: 3, nom: 'lorem', numero: 'lorem' },
+            { id: 4, nom: 'lorem', numero: 'lorem' }
+        ],
+        jourActif: -1
+    }
+});
+
+
+// ---------------------- \\
+// JQuery for API call \\
+// ---------------------- \\
+
 import tabJoursEnOrdre from './Utilitaire/gestionTemps.js';
 
 const APIKEY = '1db618f01129e97ae866956a56ec549f';
@@ -199,7 +258,6 @@ function majInfos(numJour) {
 
         $(".logo-meteo").attr("src", `ressources/jour/${resultatsAPI.daily[numJour].weather[0].icon}.svg`);
 
-
     }
 
 }
@@ -240,69 +298,3 @@ function AppelAPI(lat, lon) {
 function convertMSenKH(vitesseMS) {
     return (Math.trunc(vitesseMS * 3.6))
 }
-
-
-Vue.component('heure-prevision-bloc', {
-    props: ['nom', 'valeur'],
-    template: `
-      <div class="bloc-h">
-        <p class="heure-prevision-nom">{{ nom }}</p>
-        <p class="heure-prevision-valeur">{{ valeur }}</p>
-      </div>
-    `
-});
-
-new Vue({
-    el: '#heure-prevision-bloc',
-    data: {
-        previsions: [
-            { id: 1, nom: 'lorem', valeur: 'lorem' },
-            { id: 2, nom: 'lorem', valeur: 'lorem' },
-            { id: 3, nom: 'lorem', valeur: 'lorem' },
-            { id: 4, nom: 'lorem', valeur: 'lorem' },
-            { id: 5, nom: 'lorem', valeur: 'lorem' },
-            { id: 6, nom: 'lorem', valeur: 'lorem' }
-        ]
-    }
-});
-
-
-Vue.component('jour-prevision-bloc', {
-    props: ['nom', 'numero', 'id'],
-    template: `
-    <div class="bloc-j" :id="id">
-        <p class="jour-prevision-nom">{{ nom }}</p>
-        <p class="numero-du-jour">{{ numero }}</p>
-    </div>
-    `
-});
-
-new Vue({
-    el: '#jour-prevision-bloc',
-    data: {
-      jours: [
-        { id: -1, nom: 'lorem', numero: 'lorem' },
-        { id: 0, nom: 'lorem', numero: 'lorem' },
-        { id: 1, nom: 'lorem', numero: 'lorem' },
-        { id: 2, nom: 'lorem', numero: 'lorem' },
-        { id: 3, nom: 'lorem', numero: 'lorem' },
-        { id: 4, nom: 'lorem', numero: 'lorem' }
-      ],
-      jourActif: -1
-    },
-    methods: {
-      changerJour: function(jourId) {
-        this.jourActif = jourId;
-      }
-    }
-  });
-
-// Vue.component('jour-prevision-bloc', {
-//     props: ['nom', 'valeur'],
-//     template: `
-//         <div class="bloc-j">
-//             <p class="jour-prevision-nom">{{ nom }}</p>
-//             <p class="jour-prevision-valeur">{{ valeur }}</p>
-//         </div>
-//     `
-// });
