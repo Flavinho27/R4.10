@@ -24,3 +24,10 @@ a {
 .content {
     min-height: 100%;
 }
+
+.fixed-bottom-button {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
