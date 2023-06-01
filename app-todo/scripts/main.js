@@ -2,36 +2,67 @@ const app = Vue.createApp({
     data() {
       return {
         description: '',
-        startDate: '',
-        endDate: '',
+        dateDebut: '',
+        dateFin: '',
         etat: '',
-        priorite: ''
+        priorite: '',
+        taches: [] 
       };
     },
     methods: {
-      addTask() {
-        // Créez un nouvel objet tâche avec les données saisies
+      ajoutTache() {
+        
+
+        // Vérifie que tous les champs du formulaire aient été remplis
+        if (
+            this.description.trim() === '' ||
+            this.dateDebut.trim() === '' ||
+            this.dateFin.trim() === '' ||
+            this.etat.trim() === '' ||
+            this.priorite.trim() === ''
+          ) {
+            alert('Veuillez remplir tous les champs du formulaire.');
+            return;
+          }
+        
+          // dateDebut < dateFin
+          const dateDebutObj = new Date(this.dateDebut);
+          const dateFinObj = new Date(this.dateFin);
+        
+          if (dateDebutObj >= dateFinObj) {
+            alert('La date de début doit être antérieure à la date de fin.');
+            return;
+          }
+
         const newTask = {
           description: this.description,
-          startDate: this.startDate,
-          endDate: this.endDate,
+          dateDebut: this.dateDebut,
+          dateFin: this.dateFin,
           etat: this.etat,
-          priorite: this.priorite
+          priorite: this.priorite,
+          id: Date.now() // ID unique pour chaque tâche (utilisation de la timestamp actuelle)
         };
   
-        // Emettre un événement pour transmettre la nouvelle tâche à un composant parent
-        this.$emit('task-added', newTask);
+        this.taches.push(newTask); // Ajouter la nouvelle tâche au tableau
   
-        // Réinitialiser les valeurs du formulaire après l'ajout de la tâche
         this.description = '';
-        this.startDate = '';
-        this.endDate = '';
+        this.dateDebut = '';
+        this.dateFin = '';
         this.etat = '';
         this.priorite = '';
-      }
+      },
+      suppressionTache(tacheId) {
+        this.taches = this.taches.filter(tache => tache.id !== tacheId);
+      },
+      suppressionToutesTaches() {
+        if (this.taches.length == 0) {
+            alert('Il y a aucune tache à supprimer.');
+        }
+        this.taches = [];
+      },
     }
+    
   });
   
   app.mount('#app');
-
   
