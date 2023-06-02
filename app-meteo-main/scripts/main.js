@@ -1,6 +1,6 @@
-// ---------------------------------------------- \\
-// Vue component for the main weather information \\
-// ---------------------------------------------- \\
+// --------------(\\
+// Composants Vue  \\
+// -----------------\\
 
 Vue.component('heure-prevision-bloc', {
     props: ['nom', 'valeur'],
@@ -53,9 +53,9 @@ new Vue({
 });
 
 
-// ---------------------- \\
-// JQuery for API call \\
-// ---------------------- \\
+// ----------------------- \\
+// Gestion de l'affichage   \\
+// ------------------------- \\
 
 import tabJoursEnOrdre from './Utilitaire/gestionTemps.js';
 
