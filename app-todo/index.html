@@ -33,18 +33,18 @@
 
     <div class="button-bottom">
       <div class="center">
-        <button class="btn button-add waves-effect waves-ligh" @click="showAddForm = true"
-          v-show="!showAddForm &&!showSearchForm && !showConfirmation">Ajouter <i class="material-icons right">add_task</i></button>
+        <button class="btn button-margin waves-effect waves-ligh" @click="AddForm = true"
+          v-show="!AddForm &&!SearchForm && !AddConfirmation">Ajouter <i class="material-icons right">add_task</i></button>
       </div>
 
       <div class="center">
-        <button class="btn button-search waves-effect waves-ligh" @click="showSearchForm = true"
-          v-show="!showAddForm && !showSearchForm && !showConfirmation">Rechercher <i class="material-icons right">search</i></button>
+        <button class="btn button-margin waves-effect waves-ligh" @click="SearchForm = true"
+          v-show="!AddForm && !SearchForm && !AddConfirmation">Rechercher <i class="material-icons right">search</i></button>
       </div>
     </div>
 
 
-    <table v-show="!showAddForm && !showSearchForm && !showConfirmation">
+    <table v-show="!AddForm && !SearchForm && !AddConfirmation && !DeleteAllConfirmation">
       <thead>
         <tr class="teal darken-1 teal-text text-lighten-5">
           <th>Date de début</th>
@@ -52,7 +52,7 @@
           <th>État</th>
           <th>Priorité</th>
           <th>Description</th>
-          <th><i class="material-icons" @click="suppressionToutesTaches()">delete_forever</i></th>
+          <th><i class="material-icons" @click="showDeleteAllConfirmation">delete_forever</i></th>
         </tr>
       </thead>
       <tbody>
@@ -67,8 +67,16 @@
       </tbody>
     </table>
 
+    <div v-show="DeleteAllConfirmation">
+      <div class="center">
+        <p>Voulez-vous vraiment supprimer toutes vos tâches ?</p>
+        <button class="btn button-margin" @click="suppressionToutesTaches">Valider</button>
+        <button class="btn button-margin" @click="hideDeleteAllConfirmation">Annuler</button>
+      </div>
+    </div>
 
-    <div v-show="showAddForm && !showConfirmation && !showSearchForm">
+
+    <div v-show="AddForm && !AddConfirmation && !SearchForm && !DeleteAllConfirmation">
       <form @submit.prevent="ajoutTache">
         <div class="row">
           <div class="input-field col s12 m6">
@@ -108,16 +116,16 @@
       </form>
     </div>
 
-    <div v-show="showConfirmation">
+    <div v-show="AddConfirmation">
       <div class="center">
         <p>Tâche ajoutée avec succès !</p>
-        <button class="btn" @click="resetForm">OK</button>
+        <button class="btn" @click="hideAddConfirmation">OK</button>
       </div>
     </div>
 
 
     
-    <div v-show="showSearchForm && !showConfirmation && !showAddForm">
+    <div v-show="SearchForm && !AddConfirmation && !AddForm">
       <form @submit.prevent="rechercherTache">
         <div class="row">
           <div class="input-field col s12 m6">

@@ -52,13 +52,11 @@ tbody tr:nth-child(even) {
     transform: translateX(-50%);
     display: flex;
 }
-.button-add {
+.button-margin {
     margin: 10px;
 }
 
-.button-search {
-    margin: 10px;
-}
+
 
 /* ---------- Media Query ---------- */
 

@@ -8,11 +8,14 @@ const app = Vue.createApp({
             priorite: '',
             taches: JSON.parse(localStorage.getItem('taches')) || [],
             // Formulaire d'ajout d'une activité
-            showAddForm: false,
+            AddForm: false,
             // Formulaire de recherche d'une activité
-            showSearchForm: false,
+            SearchForm: false,
             // Message de confirmation lors de l'ajout d'une activité
-            showConfirmation: false,
+            AddConfirmation: false,
+            // Message de confirmation pour la suppression de toutes les activités
+            DeleteAllConfirmation: false,
+
         };
     },
     methods: {
@@ -33,7 +36,7 @@ const app = Vue.createApp({
             const dateDebutObj = new Date(this.dateDebut);
             const dateFinObj = new Date(this.dateFin);
 
-            if (dateDebutObj >= dateFinObj) {
+            if (dateDebutObj > dateFinObj) {
                 alert('La date de début doit être antérieure à la date de fin.');
                 return;
             }
@@ -48,8 +51,8 @@ const app = Vue.createApp({
             };
 
             // Afficher la confirmation
-            this.showAddForm = false;
-            this.showConfirmation = true;
+            this.AddForm = false;
+            this.AddConfirmation = true;
 
             this.taches.push(newTask); // Ajouter la nouvelle tâche au tableau
 
@@ -67,23 +70,25 @@ const app = Vue.createApp({
             this.taches = this.taches.filter(tache => tache.id !== tacheId);
         },
         suppressionToutesTaches() {
+            this.DeleteAllConfirmation = false;
+            localStorage.removeItem('taches');
+            this.taches = [];
+        },
+        hideAddConfirmation() {
+            this.AddConfirmation = false;
+        },
+        showDeleteAllConfirmation() {
             if (this.taches.length == 0) {
                 alert('Il n\'y a aucune tache à supprimer.');
             } else {
-                localStorage.removeItem('taches');
-                this.taches = [];
+                this.DeleteAllConfirmation = true;
             }
         },
-        resetForm() {
-            // Réinitialiser le formulaire et masquer la confirmation
-            this.showAddForm = false;
-            this.showConfirmation = false;
+        hideDeleteAllConfirmation() {
+            this.DeleteAllConfirmation = false;
         },
         rechercherTache() {
-
-
-
-            this.showSearchForm = false;
+            this.SearchForm = false;
         }
     }
 
