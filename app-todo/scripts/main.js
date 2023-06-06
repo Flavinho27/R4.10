@@ -6,15 +6,17 @@ const app = Vue.createApp({
             dateFin: '',
             etat: '',
             priorite: '',
-            taches: [],
-            showForm: false,
+            taches: JSON.parse(localStorage.getItem('taches')) || [],
+            // Formulaire d'ajout d'une activité
+            showAddForm: false,
+            // Formulaire de recherche d'une activité
+            showSearchForm: false,
+            // Message de confirmation lors de l'ajout d'une activité
             showConfirmation: false,
         };
     },
     methods: {
         ajoutTache() {
-
-
             // Vérifie que tous les champs du formulaire aient été remplis
             // if (
             //     this.description.trim() === '' ||
@@ -46,10 +48,13 @@ const app = Vue.createApp({
             };
 
             // Afficher la confirmation
-            this.showForm = false;
+            this.showAddForm = false;
             this.showConfirmation = true;
 
             this.taches.push(newTask); // Ajouter la nouvelle tâche au tableau
+
+            // Sauvegarder les tâches dans le localStorage
+            localStorage.setItem('taches', JSON.stringify(this.taches));
 
             this.description = '';
             this.dateDebut = '';
@@ -58,19 +63,28 @@ const app = Vue.createApp({
             this.priorite = '';
         },
         suppressionTache(tacheId) {
+            localStorage.setItem('taches', JSON.stringify(this.taches.filter(tache => tache.id !== tacheId)));
             this.taches = this.taches.filter(tache => tache.id !== tacheId);
         },
         suppressionToutesTaches() {
             if (this.taches.length == 0) {
-                alert('Il y a aucune tache à supprimer.');
+                alert('Il n\'y a aucune tache à supprimer.');
+            } else {
+                localStorage.removeItem('taches');
+                this.taches = [];
             }
-            this.taches = [];
         },
         resetForm() {
             // Réinitialiser le formulaire et masquer la confirmation
-            this.showForm = false;
+            this.showAddForm = false;
             this.showConfirmation = false;
-          }
+        },
+        rechercherTache() {
+
+
+
+            this.showSearchForm = false;
+        }
     }
 
 });

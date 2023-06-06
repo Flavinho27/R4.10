@@ -43,13 +43,21 @@ tbody tr:nth-child(even) {
     color: #e0f2f1;
 }
 
-/* ----------- Button to add To-Do ----------  */
+/* ----------- Button to add and search ----------  */
 
-.fixed-bottom-button {
+.button-bottom {
     position: fixed;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+}
+.button-add {
+    margin: 10px;
+}
+
+.button-search {
+    margin: 10px;
 }
 
 /* ---------- Media Query ---------- */
