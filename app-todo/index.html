@@ -33,7 +33,7 @@
 
     <div class="button-bottom">
       <div class="center">
-        <button class="btn button-margin waves-effect waves-ligh" @click="AddForm = true"
+        <button class="btn button-margin waves-effect waves-ligh pulse" @click="AddForm = true"
           v-show="!AddForm &&!SearchForm && !AddConfirmation">Ajouter <i class="material-icons right">add_task</i></button>
       </div>
 
@@ -125,7 +125,7 @@
 
 
     
-    <div v-show="SearchForm && !AddConfirmation && !AddForm">
+    <div v-show="SearchForm && !AddConfirmation && !AddForm && !DeleteAllConfirmation">
       <form @submit.prevent="rechercherTache">
         <div class="row">
           <div class="input-field col s12 m6">
@@ -143,6 +143,7 @@
           <div class="input-field col s12 m6">
             <select v-model="etat" class="browser-default">
               <option value="" disabled selected>Choisir un état</option>
+              <option value="Aucun">Aucun</option>
               <option value="À faire">À faire</option>
               <option value="En cours">En cours</option>
               <option value="Terminé">Terminé</option>
@@ -151,6 +152,7 @@
           <div class="input-field col s12 m6">
             <select v-model="priorite" class="browser-default">
               <option value="" disabled selected>Choisir une priorité</option>
+              <option value="Aucune">Aucune</option>
               <option value="Haute">Haute</option>
               <option value="Moyenne">Moyenne</option>
               <option value="Basse">Basse</option>

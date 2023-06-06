@@ -41,7 +41,7 @@ const app = Vue.createApp({
                 return;
             }
 
-            const newTask = {
+            const newtache = {
                 description: this.description,
                 dateDebut: this.dateDebut,
                 dateFin: this.dateFin,
@@ -54,7 +54,7 @@ const app = Vue.createApp({
             this.AddForm = false;
             this.AddConfirmation = true;
 
-            this.taches.push(newTask); // Ajouter la nouvelle tâche au tableau
+            this.taches.push(newtache); // Ajouter la nouvelle tâche au tableau
 
             // Sauvegarder les tâches dans le localStorage
             localStorage.setItem('taches', JSON.stringify(this.taches));
@@ -89,6 +89,20 @@ const app = Vue.createApp({
         },
         rechercherTache() {
             this.SearchForm = false;
+
+            this.taches = this.taches.filter((tache) => {
+                // Effectuer les conditions de filtrage en fonction des valeurs des champs de recherche
+                const matchDescription = tache.description.includes(this.description);
+                const matchDateDebut = this.dateDebut ? tache.startDate === this.dateDebut : true;
+                const matchDateFin = this.dateFin ? tache.endDate === this.dateFin : true;
+                const matchEtat = this.etat ? (tache.etat === this.etat || "Aucun") : true;
+                const matchPriorite = this.priorite ? (tache.priorite === this.priorite || "Aucune") : true;
+
+                console.log(tache.etat)
+            
+                // Retourner true si toutes les conditions sont remplies, sinon false
+                return matchDescription && matchDateDebut && matchDateFin && matchEtat && matchPriorite;
+              });
         }
     }
 
