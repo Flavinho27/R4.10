@@ -13,22 +13,31 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center"> <img src="../app-todo/ressources/logo.png" alt="Logo" width="50rem" /></a>
+<body class="teal lighten-5">
+
+  <nav class="teal darken-3" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo"><img src="../app-todo/ressources/logo.png" alt="Logo" width="50rem" /></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+
+      <!-- <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
     </div>
   </nav>
 
   <div id="app">
 
-    <div class="center">
+    <div>
       <button class="btn fixed-bottom-button waves-effect waves-ligh" @click="showForm = true" v-show="!showForm && !showConfirmation">Ajouter <i class="material-icons right">add_task</i></button>
     </div>
 
-    <table class="striped" v-show="!showForm && !showConfirmation">
+    <table v-show="!showForm && !showConfirmation">
       <thead>
-        <tr>
+        <tr class="teal darken-1 teal-text text-lighten-5">
           <th>Date de début</th>
           <th>Date de fin</th>
           <th>État</th>

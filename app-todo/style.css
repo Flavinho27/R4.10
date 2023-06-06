@@ -14,20 +14,48 @@ body {
     height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
     color: #f1f1f1;
-    background: linear-gradient(45deg, rgb(59, 50, 50), rgb(22, 28, 29));
+    /* background: linear-gradient(45deg, rgb(59, 50, 50), rgb(22, 28, 29)); */
 }
 
 a {
     text-decoration: none;
 }
 
-.content {
-    min-height: 100%;
+
+/* ----------- Dashboard ----------- */
+
+thead tr {
+    display: flex;
+    justify-content: space-between;
 }
+
+tbody tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+tbody tr:nth-child(odd) {
+    background: #e0f2f1;
+    color: #00897b;
+}
+tbody tr:nth-child(even) {
+    background: #4db6ac;
+    color: #e0f2f1;
+}
+
+/* ----------- Button to add To-Do ----------  */
 
 .fixed-bottom-button {
     position: fixed;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-  }
+}
+
+/* ---------- Media Query ---------- */
+
+@media (max-width: 768px) {
+    .dashboard-todo {
+        margin: 0;
+    }
+}

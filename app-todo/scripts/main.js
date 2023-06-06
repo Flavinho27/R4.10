@@ -16,16 +16,16 @@ const app = Vue.createApp({
 
 
             // Vérifie que tous les champs du formulaire aient été remplis
-            if (
-                this.description.trim() === '' ||
-                this.dateDebut.trim() === '' ||
-                this.dateFin.trim() === '' ||
-                this.etat.trim() === '' ||
-                this.priorite.trim() === ''
-            ) {
-                alert('Veuillez remplir tous les champs du formulaire.');
-                return;
-            }
+            // if (
+            //     this.description.trim() === '' ||
+            //     this.dateDebut.trim() === '' ||
+            //     this.dateFin.trim() === '' ||
+            //     this.etat.trim() === '' ||
+            //     this.priorite.trim() === ''
+            // ) {
+            //     alert('Veuillez remplir tous les champs du formulaire.');
+            //     return;
+            // }
 
             // dateDebut < dateFin
             const dateDebutObj = new Date(this.dateDebut);
