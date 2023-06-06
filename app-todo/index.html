@@ -13,11 +13,11 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body class="teal lighten-5">
+<body class="teal lighten-5" id="app">
 
   <nav class="teal darken-3" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo"><img src="../app-todo/ressources/logo.png" alt="Logo" width="50rem" /></a>
+      <a id="logo-container" href="#" class="btn" @click="resetForm"><img src="../app-todo/ressources/logo.png" alt="Logo" width="50rem" /></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
       </ul>
@@ -29,7 +29,7 @@
     </div>
   </nav>
 
-  <div id="app">
+  <div>
 
     <div class="button-bottom">
       <div class="center">
