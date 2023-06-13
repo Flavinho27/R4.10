@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>App ToDo</title>
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -17,9 +17,9 @@
 
   <nav class="teal darken-3" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="btn" @click="showToutesTaches"><img src="../app-todo/ressources/logo.png" alt="Logo" width="50rem" /></a>
+      <a href="index.html" @click="showToutesTaches"><img src="../app-todo/ressources/logo.png" alt="Logo" width="50rem" class="logo"/></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="aide.html">Aide</a></li>
       </ul>
 
       <!-- <ul id="nav-mobile" class="sidenav">
@@ -29,7 +29,7 @@
     </div>
   </nav>
 
-  <div>
+  <div class="container-app">
 
     <div class="button-bottom">
       <div class="center">
@@ -116,8 +116,8 @@
       </form>
     </div>
 
-    <div v-show="AddConfirmation">
-      <div class="center">
+    <div class="container-confirmation-added-todo-div" v-show="AddConfirmation">
+      <div class="confirmation-added-todo-div">
         <p>Tâche ajoutée avec succès !</p>
         <button class="btn" @click="hideAddConfirmation">OK</button>
       </div>
@@ -173,6 +173,24 @@
 
   </div>
 
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <h5 class="white-text">ToDo App</h5>
+          <p class="grey-text text-lighten-4">ToDo est une application web pratique conçue par deux étudiants. Elle permet aux utilisateurs de gérer leurs tâches quotidiennes en les organisant, en les priorisant et en suivant leur progression, offrant ainsi une solution simple et efficace pour rester organisé et productif.</p>
+
+        </div>
+        
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Créé par des étudiants de l'<a class="brown-text text-lighten-3 iut-vannes" href="https://www.iutvannes.fr/">IUT de Vannes</a>
+      </div>
+    </div>
+  </footer>
 
 
 
