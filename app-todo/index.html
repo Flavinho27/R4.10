@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>App ToDo</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -17,9 +17,9 @@
 
   <nav class="teal darken-3" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="btn" @click="showToutesTaches"><img src="../app-todo/ressources/logo.png" alt="Logo" width="50rem" /></a>
+      <a href="index.html" @click="showToutesTaches"><img src="../app-todo/ressources/logo.png" alt="Logo" width="50rem" class="logo"/></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="aide.html">Aide</a></li>
       </ul>
 
       <!-- <ul id="nav-mobile" class="sidenav">
@@ -116,7 +116,7 @@
       </form>
     </div>
 
-    <div v-show="AddConfirmation">
+    <div class="container-confirmation-added-todo-div" v-show="AddConfirmation">
       <div class="confirmation-added-todo-div">
         <p>Tâche ajoutée avec succès !</p>
         <button class="btn" @click="hideAddConfirmation">OK</button>

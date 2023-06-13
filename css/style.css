@@ -24,12 +24,32 @@ a {
     text-decoration: none;
 }
 
+.logo {
+    width: 50px;
+    margin-top: 10px;
+}
+
+/* ---------- confirmation added task ----------- */
+
+.container-confirmation-added-todo-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .confirmation-added-todo-div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.confirmation-added-todo-div p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 /* ---------- container-app ---------- */
