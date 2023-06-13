@@ -92,17 +92,20 @@ const app = Vue.createApp({
 
             this.taches = this.taches.filter((tache) => {
                 // Effectuer les conditions de filtrage en fonction des valeurs des champs de recherche
-                const matchDescription = tache.description.includes(this.description);
-                const matchDateDebut = this.dateDebut ? tache.startDate === this.dateDebut : true;
-                const matchDateFin = this.dateFin ? tache.endDate === this.dateFin : true;
-                const matchEtat = this.etat ? (tache.etat === this.etat || "Aucun") : true;
-                const matchPriorite = this.priorite ? (tache.priorite === this.priorite || "Aucune") : true;
-
-                console.log(tache.etat)
-            
+                const matchDescription =  this.description ? tache.description.includes(this.description) : true;
+                const matchDateDebut = this.dateDebut ? tache.dateDebut === this.dateDebut : true;
+                const matchDateFin = this.dateFin ? tache.dateFin === this.dateFin : true;
+                const matchEtat = this.etat ? (tache.etat === this.etat || this.etat === "Aucun") : true;
+                const matchPriorite = this.priorite ? (tache.priorite === this.priorite || this.priorite === "Aucune") : true
                 // Retourner true si toutes les conditions sont remplies, sinon false
                 return matchDescription && matchDateDebut && matchDateFin && matchEtat && matchPriorite;
               });
+        },
+        showToutesTaches() {
+            this.AddForm = false;
+            this.SearchForm = false;
+            this.AddConfirmation = false;
+            this.DeleteAllConfirmation = false;
         }
     }
 
