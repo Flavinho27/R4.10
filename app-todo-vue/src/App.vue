@@ -6,6 +6,7 @@ import SearchTaskForm from './components/SearchTaskForm.vue'
 import TasksButton from './components/TasksButton.vue'
 import Footer from './components/Footer.vue'
 import DeleteTasksConfirmation from './components/DeleteTasksConfirmation.vue'
+import ActiveFilters from './components/ActiveFilters.vue'
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import DeleteTasksConfirmation from './components/DeleteTasksConfirmation.vue'
     <Navbar></Navbar>
 
     <div v-if="!AddForm && !SearchForm && !DeleteAllConfirmation">
+      <ActiveFilters :filtres="filtres" @new-search="rechercherAvecFiltres"></ActiveFilters>
       <TasksTable :taches="taches" @task-deleted="supprimerTache"
         @show-delete-all-confirmation="this.DeleteAllConfirmation = true"></TasksTable>
       <TasksButton @add-task="AddForm = true" @search-task="SearchForm = true"></TasksButton>
@@ -24,7 +26,8 @@ import DeleteTasksConfirmation from './components/DeleteTasksConfirmation.vue'
 
 
     <div v-if="SearchForm">
-      <SearchTaskForm @task-search="rechercherTaches" @cancel="SearchForm = false"></SearchTaskForm>
+      <SearchTaskForm @task-search="rechercherTaches" @cancel="SearchForm = false">
+      </SearchTaskForm>
     </div>
 
 
@@ -45,6 +48,7 @@ export default {
       AddForm: false,
       SearchForm: false,
       DeleteAllConfirmation: false,
+      filtres: {},
     };
   },
   methods: {
@@ -65,6 +69,10 @@ export default {
       this.DeleteAllConfirmation = false;
 
     },
+    /**
+     * Est activé lorsque l'utilisateur va effectuer une recherche
+     * @param {*} filtre 
+     */
     rechercherTaches(filtre) {
       this.taches = JSON.parse(localStorage.getItem('taches')).filter((tache) => {
         // Effectuer les conditions de filtrage en fonction des valeurs des champs de recherche
@@ -76,8 +84,17 @@ export default {
         // Retourner true si toutes les conditions sont remplies, sinon false
         return matchDescription && matchDateDebut && matchDateFin && matchEtat && matchPriorite;
       });
+      this.filtres = filtre;
       this.SearchForm = false;
-    }
+    },
+    /**
+     * Est activé lorsque l'utisateur va supprimer un filtre
+     * @param {*} filtres 
+     */
+    rechercherAvecFiltres(filtres) {
+      this.filtres = filtres; // Met à jour les filtres actifs
+      this.rechercherTaches(filtres); // Effectue la recherche avec les filtres restants
+    },
   },
 };
 </script>
