@@ -101,8 +101,8 @@ export default {
         const matchDescription = filtre.description ? tache.description.includes(filtre.description) : true;
         const matchDateDebut = filtre.dateDebut ? tache.dateDebut === filtre.dateDebut : true;
         const matchDateFin = filtre.dateFin ? tache.dateFin === filtre.dateFin : true;
-        const matchEtat = filtre.etat ? (tache.etat === filtre.etat || filtre.etat === "Aucun") : true;
-        const matchPriorite = filtre.priorite ? (tache.priorite === filtre.priorite || filtre.priorite === "Aucune") : true
+        const matchEtat = filtre.etat ? tache.etat === filtre.etat : true;
+        const matchPriorite = filtre.priorite ? tache.priorite === filtre.priorite : true
         // Retourner true si toutes les conditions sont remplies, sinon false
         return matchDescription && matchDateDebut && matchDateFin && matchEtat && matchPriorite;
       });

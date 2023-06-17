@@ -20,13 +20,13 @@
                     <i class="material-icons">clear</i>
                 </button>
             </li>
-            <li v-if="filtres.etat && filtres.etat !== 'Aucun'">
+            <li v-if="filtres.etat">
                 <span>État :</span> {{ filtres.etat }}
                 <button class="remove-filter" @click="removeFilter('etat')">
                     <i class="material-icons">clear</i>
                 </button>
             </li>
-            <li v-if="filtres.priorite && filtres.priorite !== 'Aucune'">
+            <li v-if="filtres.priorite">
                 <span>Priorité :</span> {{ filtres.priorite }}
                 <button class="remove-filter" @click="removeFilter('priorite')">
                     <i class="material-icons">clear</i>
