@@ -33,4 +33,10 @@
     display: flex;
     justify-content: space-around;
 }
+
+@media screen and (min-width: 600px) {
+  .button-bottom {
+    padding: 30px;
+  }
+}
 </style>
