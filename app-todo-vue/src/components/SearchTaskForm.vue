@@ -32,8 +32,8 @@
                 </select>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12">
+        <div class="container-form-validate-buttons">
+            <div class="form-bloc-buttons">
                 <button class="btn" type="submit">Rechercher</button>
                 <button class="btn red" type="button" @click="$emit('cancel')">Annuler</button>
             </div>

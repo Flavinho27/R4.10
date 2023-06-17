@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="ajoutTache">
         <div class="row">
-            <div class="input-field col s12 m6">
+            <div class="input-field col s24 m6">
                 <input v-model="description" id="description" type="text" class="validate">
                 <label for="description">Description</label>
             </div>
@@ -30,10 +30,10 @@
                 </select>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12">
+        <div class="container-form-validate-buttons">
+            <div class="form-bloc-buttons">
                 <button class="btn" type="submit">Valider</button>
-                <button class="btn red" type="button" @click="$emit('cancel')">Annuler</button>
+                <button class="btn red" type="button" @click="$emit('cancel')">Retour</button>
             </div>
         </div>
     </form>
@@ -94,3 +94,5 @@ export default {
     },
 };
 </script>
+<style>
+</style>

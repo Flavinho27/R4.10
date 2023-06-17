@@ -136,4 +136,28 @@ i {
   cursor: pointer;
 }
 
+/* Formulaire boutons de validation */
+
+form {
+  margin-top: 20px;
+}
+
+.container-form-validate-buttons {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+}
+
+.form-bloc-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-bloc-buttons button, i {
+  margin: 0 20px;
+}
+
 </style>

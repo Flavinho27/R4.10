@@ -31,8 +31,8 @@
           </select>
         </div>
       </div>
-      <div class="container-taskDetails-buttons">
-        <div class="taskDetails-bloc-buttons">
+      <div class="container-form-validate-buttons">
+        <div class="form-bloc-buttons">
           <button class="btn" type="submit">Valider</button>
           <button class="btn red" type="button" @click="$emit('cancel')">Retour</button>
           <i class="material-icons" @click="suppressionTache(tache.id)">delete</i>
@@ -57,23 +57,4 @@ export default {
 };
 </script>
 <style>
-
-.container-taskDetails-buttons {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  bottom: 40px;
-  width: 100%;
-}
-
-.taskDetails-bloc-buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.taskDetails-bloc-buttons button, i {
-  margin: 0 20px;
-}
-
 </style>
