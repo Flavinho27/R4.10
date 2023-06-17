@@ -131,6 +131,11 @@ export default {
 
 #container-app {
   flex-grow: 1;
+  position: relative;
+}
+
+i {
+  cursor: pointer;
 }
 
 </style>

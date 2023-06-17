@@ -6,7 +6,7 @@
           <th>Date de fin</th>
           <th>État</th>
           <th>Priorité</th> -->
-          <th>Description</th>
+          <th class="th-description">To Do</th>
           <th><i class="material-icons" @click="$emit('show-delete-all-confirmation')">delete_forever</i></th>
         </tr>
       </thead>
@@ -41,19 +41,47 @@
   </script>
 <style>
 
-th:last-child {
-    cursor: pointer;
-}
-
-thead tr {
+/* thead tr {
     display: flex;
     justify-content: space-between;
+} */
+
+/* thead th {
+    width: 100%;
+    text-align: center;
+} */
+
+/* thead th:last-child {
+    width: 10%;
+    text-align: center;
+} */
+
+thead {
+  position: relative;
+}
+
+th:last-child {
+    /* cursor: pointer; */
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 30px;
+}
+
+.th-description {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
 }
 
 tbody tr {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+}
+
+tbody tr:hover {
+    filter: brightness(1.3);
 }
 
 tbody tr:nth-child(odd) {
