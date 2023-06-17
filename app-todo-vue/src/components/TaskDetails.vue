@@ -2,19 +2,19 @@
   <div>
     <form @submit.prevent="modifTache">
       <div class="row">
-        <div class="input-field col s12 m4">
+        <div class="input-field col s12 m8">
           <input v-model="tache.description" id="description" type="text" class="validate">
           <label class="active" for="description">Description</label>
         </div>
-        <div class="input-field col s12 m4">
+        <div class="input-field col s12 m8">
           <input v-model="tache.dateDebut" id="dateDebut" type="date" class="datepicker">
           <label for="dateDebut">Date de début</label>
         </div>
-        <div class="input-field col s12 m4">
+        <div class="input-field col s12 m8">
           <input v-model="tache.dateFin" id="dateFin" type="date" class="datepicker">
           <label for="dateFin">Date de fin</label>
         </div>
-        <div class="input-field col s12 m4">
+        <div class="input-field col s12 m8">
           <select v-model="tache.etat" class="browser-default">
             <option value="" disabled selected>Choisir un état</option>
             <option value="À faire">À faire</option>
@@ -22,7 +22,7 @@
             <option value="Terminé">Terminé</option>
           </select>
         </div>
-        <div class="input-field col s12 m4">
+        <div class="input-field col s12 m8">
           <select v-model="tache.priorite" class="browser-default">
             <option value="" disabled selected>Choisir une priorité</option>
             <option value="Haute">Haute</option>
