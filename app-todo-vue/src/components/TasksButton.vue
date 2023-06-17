@@ -22,4 +22,15 @@
     },
   };
   </script>
-  
+<style>
+.button-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #00897b;
+    color: #e0f2f1;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+</style>

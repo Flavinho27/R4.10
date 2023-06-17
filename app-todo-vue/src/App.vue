@@ -7,36 +7,45 @@ import TasksButton from './components/TasksButton.vue'
 import Footer from './components/Footer.vue'
 import DeleteTasksConfirmation from './components/DeleteTasksConfirmation.vue'
 import ActiveFilters from './components/ActiveFilters.vue'
+import TaskDetails from './components/TaskDetails.vue'
 </script>
 
 <template>
-  <div>
+  <div id="body-app">
     <Navbar></Navbar>
 
-    <div v-if="!AddForm && !SearchForm && !DeleteAllConfirmation">
-      <ActiveFilters :filtres="filtres" @new-search="rechercherAvecFiltres"></ActiveFilters>
-      <TasksTable :taches="taches" @task-deleted="supprimerTache"
-        @show-delete-all-confirmation="this.DeleteAllConfirmation = true"></TasksTable>
-      <TasksButton @add-task="AddForm = true" @search-task="SearchForm = true"></TasksButton>
+    <div id="container-app">
+
+      <div v-if="!AddForm && !SearchForm && !DeleteAllConfirmation && !tacheSelectionnee">
+        <ActiveFilters :filtres="filtres" @new-search="rechercherAvecFiltres"></ActiveFilters>
+        <TasksTable :taches="taches" @task-selected="voirTacheDetails"
+          @show-delete-all-confirmation="this.DeleteAllConfirmation = true"></TasksTable>
+        <TasksButton @add-task="AddForm = true" @search-task="SearchForm = true"></TasksButton>
+      </div>
+  
+      <div v-if="tacheSelectionnee">
+        <TaskDetails :tache="tacheSelectionnee" @task-updated="handleTaskUpdate" @cancel="tacheSelectionnee = null" @task-deleted="supprimerTache"></TaskDetails>
+      </div>
+  
+  
+      <div v-if="AddForm">
+        <AddTaskForm @task-added="ajouterTache" @cancel="AddForm = false"></AddTaskForm>
+      </div>
+  
+  
+      <div v-if="SearchForm">
+        <SearchTaskForm @task-search="rechercherTaches" @cancel="SearchForm = false">
+        </SearchTaskForm>
+      </div>
+  
+  
+  
+      <div v-if="DeleteAllConfirmation">
+        <DeleteTasksConfirmation @delete-all="supprimerToutesTaches" @cancel="DeleteAllConfirmation = false">
+        </DeleteTasksConfirmation>
+      </div>
+
     </div>
-
-    <div v-if="AddForm">
-      <AddTaskForm @task-added="ajouterTache" @cancel="AddForm = false"></AddTaskForm>
-    </div>
-
-
-    <div v-if="SearchForm">
-      <SearchTaskForm @task-search="rechercherTaches" @cancel="SearchForm = false">
-      </SearchTaskForm>
-    </div>
-
-
-
-    <div v-if="DeleteAllConfirmation">
-      <DeleteTasksConfirmation @delete-all="supprimerToutesTaches" @cancel="DeleteAllConfirmation = false">
-      </DeleteTasksConfirmation>
-    </div>
-    <Footer></Footer>
   </div>
 </template>
 
@@ -49,6 +58,7 @@ export default {
       SearchForm: false,
       DeleteAllConfirmation: false,
       filtres: {},
+      tacheSelectionnee: null,
     };
   },
   methods: {
@@ -57,6 +67,20 @@ export default {
       localStorage.setItem('taches', JSON.stringify(this.taches));
 
       this.AddForm = false;
+    },
+    voirTacheDetails(tache) {
+      console.log("voirTacheDetails");
+      this.tacheSelectionnee = tache;
+    },
+    handleTaskUpdate(tache) {
+      this.taches = this.taches.map((t) => {
+        if (t.id === tache.id) {
+          return tache;
+        }
+        return t;
+      });
+      localStorage.setItem('taches', JSON.stringify(this.taches));
+      this.tacheSelectionnee = null;
     },
     supprimerTache(tacheId) {
       localStorage.setItem('taches', JSON.stringify(this.taches.filter(tache => tache.id !== tacheId)));
@@ -98,3 +122,14 @@ export default {
   },
 };
 </script>
+<style>
+#body-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#container-app {
+  flex-grow: 1;
+}
+</style>
