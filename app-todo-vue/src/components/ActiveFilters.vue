@@ -3,27 +3,31 @@
         <p>Filtres actifs :</p>
         <ul>
             <li v-if="filtres.description">
-                Description : {{ filtres.description }}
+                <span>Description :</span> {{ filtres.description }}
                 <button class="remove-filter" @click="removeFilter('description')">
                     <i class="material-icons">clear</i>
                 </button>
             </li>
-            <li v-if="filtres.dateDebut">Date de début : {{ filtres.dateDebut }}
+            <li v-if="filtres.dateDebut">
+                <span>Date de début :</span> {{ filtres.dateDebut }}
                 <button class="remove-filter" @click="removeFilter('dateDebut')">
                     <i class="material-icons">clear</i>
                 </button>
             </li>
-            <li v-if="filtres.dateFin">Date de fin : {{ filtres.dateFin }}
+            <li v-if="filtres.dateFin">
+                <span>Date de fin :</span> {{ filtres.dateFin }}
                 <button class="remove-filter" @click="removeFilter('dateFin')">
                     <i class="material-icons">clear</i>
                 </button>
             </li>
-            <li v-if="filtres.etat && filtres.etat !== 'Aucun'">État : {{ filtres.etat }}
+            <li v-if="filtres.etat && filtres.etat !== 'Aucun'">
+                <span>État :</span> {{ filtres.etat }}
                 <button class="remove-filter" @click="removeFilter('etat')">
                     <i class="material-icons">clear</i>
                 </button>
             </li>
-            <li v-if="filtres.priorite && filtres.priorite !== 'Aucune'">Priorité : {{ filtres.priorite }}
+            <li v-if="filtres.priorite && filtres.priorite !== 'Aucune'">
+                <span>Priorité :</span> {{ filtres.priorite }}
                 <button class="remove-filter" @click="removeFilter('priorite')">
                     <i class="material-icons">clear</i>
                 </button>
@@ -60,5 +64,40 @@ export default {
 };
 </script>
   
-<style scoped></style>
-  
+<style scoped>
+.active-filtres p {
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.active-filtres ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.active-filtres ul li {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+}
+
+.active-filtres ul li span {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.active-filtres ul li button {
+    cursor: pointer;
+    transform: scale(0.8);
+}
+
+</style>
