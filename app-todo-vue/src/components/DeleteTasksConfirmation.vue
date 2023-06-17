@@ -3,7 +3,7 @@
     <p>Voulez-vous vraiment supprimer toutes vos tâches ?</p>
     <div>
       <button class="btn button-margin" @click="$emit('delete-all')">Valider</button>
-      <button class="btn button-margin" @click="$emit('cancel')">Annuler</button>
+      <button class="btn red button-margin" @click="$emit('cancel')">Annuler</button>
     </div>
   </div>
 </template>
