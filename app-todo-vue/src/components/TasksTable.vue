@@ -40,6 +40,11 @@
   }
   </script>
 <style>
+
+th:last-child {
+    cursor: pointer;
+}
+
 thead tr {
     display: flex;
     justify-content: space-between;
@@ -59,4 +64,10 @@ tbody tr:nth-child(even) {
     background: #4db6ac;
     color: #e0f2f1;
 }
+
+tbody td {
+    width: 100%;
+    text-align: center;
+}
+
 </style>

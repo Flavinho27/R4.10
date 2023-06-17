@@ -1,11 +1,28 @@
 <template>
-      <div class="center">
-        <p>Voulez-vous vraiment supprimer toutes vos tâches ?</p>
-        <button class="btn button-margin" @click="$emit('delete-all')">Valider</button>
-        <button class="btn button-margin" @click="$emit('cancel')">Annuler</button>
-      </div>
-  </template>
+  <div class="center confirmation">
+    <p>Voulez-vous vraiment supprimer toutes vos tâches ?</p>
+    <div>
+      <button class="btn button-margin" @click="$emit('delete-all')">Valider</button>
+      <button class="btn button-margin" @click="$emit('cancel')">Annuler</button>
+    </div>
+  </div>
+</template>
   
-  <script>
-  </script>
+<script>
+</script>
+<style>
+
+.confirmation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    position: absolute;
+    top: 30%;
+}
   
+  .button-margin {
+    margin: 10px;
+  }
+</style>

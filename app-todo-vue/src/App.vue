@@ -132,4 +132,5 @@ export default {
 #container-app {
   flex-grow: 1;
 }
+
 </style>
