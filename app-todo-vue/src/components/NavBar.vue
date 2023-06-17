@@ -1,8 +1,8 @@
 <template>
     <nav class="teal darken-3" role="navigation">
       <div class="nav-wrapper container">
-        <a href="index.html" @click="showToutesTaches">
-          <img src="icons/logo.png" alt="Logo" width="50rem" class="logo"/>
+        <a href="index.html">
+          <img src="./icons/logo.png" alt="Logo" class="logo"/>
         </a>
         <ul class="right">
           <li><a href="../../aide.html">Aide</a></li>
@@ -12,16 +12,11 @@
   </template>
   
   <script>
-  export default {
-    methods: {
-      showToutesTaches() {
-        // Logique pour afficher toutes les tâches
-      }
-    }
-  }
   </script>
-  
   <style scoped>
-  /* Styles CSS spécifiques au composant Navbar */
-  </style>
+   .logo {
+    width: 3.5rem;
+    margin-top: 10px;
+  }
+</style>
   
