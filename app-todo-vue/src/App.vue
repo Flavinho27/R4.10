@@ -142,12 +142,6 @@ form {
   margin-top: 20px;
 }
 
-form .row {
-  position: absolute;
-  top: 40px;
-  right: 0;
-}
-
 .container-form-validate-buttons {
   display: flex;
   justify-content: center;

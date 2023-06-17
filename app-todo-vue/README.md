@@ -8,7 +8,7 @@ Il permet aux utilisateurs de gérer leurs tâches quotidiennes en les organisan
 Le site est construit en utilisant Vue.js, un framework JavaScript moderne pour la construction d'interfaces utilisateur. Voici la structure du projet :
 
 - Le dossier `src` contient les fichiers sources du site.
-- Le dossier `src\assets` contient le fichier de style et l'icône utilisé.
+- Le dossier `src\assets` contient le fichier de style et le logo de notre site.
 - Le dossier `src\components` contient les composants réutilisables utilisés dans le site.
 - Le fichier `src\App.vue` est le composant racine de l'application.
 - Le fichier `src\main.js` gère la configuration de Vue.js.
