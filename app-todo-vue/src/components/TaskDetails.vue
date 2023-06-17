@@ -47,29 +47,20 @@ export default {
   props: ['tache'],
   methods: {
     modifTache() {
-      // Vous pouvez accéder aux données de la tâche modifiée ici et effectuer des actions
-      // par exemple, vous pouvez émettre un événement pour informer le composant parent
-      // de la modification de la tâche.
-      // Pour cet exemple, nous émettons un événement nommé 'task-updated' avec la tâche modifiée.
       this.$emit('task-updated', this.tache);
     },
     suppressionTache(tacheId) {
-      this.$emit('task-deleted', tacheId); // Émet un événement avec l'id de la tâche à supprimer
-      this.$emit('cancel'); // Émet un événement pour retourner à la liste des tâches
+      this.$emit('task-deleted', tacheId);
+      this.$emit('cancel'); 
     },
   },
 };
 </script>
 <style>
-/* .row:has(.taskDetails-buttons) {
-  display: flex;
-  justify-content: center;
-} */
 
 .container-taskDetails-buttons {
   display: flex;
   justify-content: center;
-  /* margin-top: 50px; */
   position: absolute;
   bottom: 40px;
   width: 100%;
@@ -79,7 +70,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* max-width: 400px; */
 }
 
 .taskDetails-bloc-buttons button, i {

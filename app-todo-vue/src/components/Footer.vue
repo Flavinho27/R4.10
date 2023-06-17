@@ -19,10 +19,8 @@
 </template>
   
 <script setup>
-
 </script>
   
 <style scoped>
-/* Styles CSS spécifiques au composant Footer */
 </style>
   

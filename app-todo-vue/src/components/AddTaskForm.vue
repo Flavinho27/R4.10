@@ -58,22 +58,22 @@ export default {
                 dateFin: this.dateFin,
                 etat: this.etat,
                 priorite: this.priorite,
-                id: Date.now() // ID unique pour chaque tâche (utilisation de la timestamp actuelle
+                id: Date.now() // ID unique pour chaque tâche (utilisation de la timestamp actuelle)
             };
 
             // Vérifie que tous les champs du formulaire aient été remplis
-            // if (
-            //     this.description.trim() === '' ||
-            //     this.dateDebut.trim() === '' ||
-            //     this.dateFin.trim() === '' ||
-            //     this.etat.trim() === '' ||
-            //     this.priorite.trim() === ''
-            // ) {
-            //     alert('Veuillez remplir tous les champs du formulaire.');
-            //     return;
-            // }
+            if (
+                this.description.trim() === '' ||
+                this.dateDebut.trim() === '' ||
+                this.dateFin.trim() === '' ||
+                this.etat.trim() === '' ||
+                this.priorite.trim() === ''
+            ) {
+                alert('Veuillez remplir tous les champs du formulaire.');
+                return;
+            }
 
-            // dateDebut < dateFin
+            // Vérifie que dateDebut < dateFin
             const dateDebutObj = new Date(this.dateDebut);
             const dateFinObj = new Date(this.dateFin);
 
@@ -82,7 +82,7 @@ export default {
                 return;
             }
 
-            this.$emit('task-added', newTache); // Émet un événement avec la nouvelle tâche
+            this.$emit('task-added', newTache); 
 
             // Réinitialise les valeurs des champs
             this.description = '';

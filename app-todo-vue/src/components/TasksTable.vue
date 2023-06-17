@@ -2,22 +2,13 @@
     <table>
       <thead>
         <tr class="teal darken-1 teal-text text-lighten-5">
-          <!-- <th>Date de début</th>
-          <th>Date de fin</th>
-          <th>État</th>
-          <th>Priorité</th> -->
           <th class="th-description">To Do</th>
           <th><i class="material-icons" @click="$emit('show-delete-all-confirmation')">delete_forever</i></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="tache in taches" :key="tache.id" @click="afficherDetails(tache)">
-          <!-- <td>{{ tache.dateDebut }}</td>
-          <td>{{ tache.dateFin }}</td>
-          <td>{{ tache.etat }}</td>
-          <td>{{ tache.priorite }}</td> -->
           <td>{{ tache.description }}</td>
-          <!-- <td><i class="material-icons" @click="suppressionTache(tache.id)">delete</i></td> -->
         </tr>
       </tbody>
     </table>
@@ -33,35 +24,18 @@
     },
     methods: {
       afficherDetails(tache) {
-        console.log("afficherDetails");
-        this.$emit('task-selected', tache); // Émet un événement avec la tâche sélectionnée
+        this.$emit('task-selected', tache);
       }
     }
   }
   </script>
 <style>
 
-/* thead tr {
-    display: flex;
-    justify-content: space-between;
-} */
-
-/* thead th {
-    width: 100%;
-    text-align: center;
-} */
-
-/* thead th:last-child {
-    width: 10%;
-    text-align: center;
-} */
-
 thead {
   position: relative;
 }
 
 th:last-child {
-    /* cursor: pointer; */
     position: absolute;
     top: 0;
     right: 10px;

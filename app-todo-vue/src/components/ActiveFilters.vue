@@ -41,6 +41,9 @@ export default {
         },
     },
     computed: {
+        /**
+         * Permet de savoir quand afficher la ligne montrant les filtres actifs
+         */
         hasActiveFilters() {
             return this.filtres.description || this.filtres.dateDebut || this.filtres.dateFin || this.filtres.etat || this.filtres.priorite;
         },

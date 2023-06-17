@@ -4,7 +4,6 @@ import TasksTable from './components/TasksTable.vue'
 import AddTaskForm from './components/AddTaskForm.vue'
 import SearchTaskForm from './components/SearchTaskForm.vue'
 import TasksButton from './components/TasksButton.vue'
-import Footer from './components/Footer.vue'
 import DeleteTasksConfirmation from './components/DeleteTasksConfirmation.vue'
 import ActiveFilters from './components/ActiveFilters.vue'
 import TaskDetails from './components/TaskDetails.vue'
@@ -24,7 +23,7 @@ import TaskDetails from './components/TaskDetails.vue'
       </div>
   
       <div v-if="tacheSelectionnee">
-        <TaskDetails :tache="tacheSelectionnee" @task-updated="handleTaskUpdate" @cancel="tacheSelectionnee = null" @task-deleted="supprimerTache"></TaskDetails>
+        <TaskDetails :tache="tacheSelectionnee" @task-updated="miseAjourTache" @cancel="tacheSelectionnee = null" @task-deleted="supprimerTache"></TaskDetails>
       </div>
   
   
@@ -54,10 +53,10 @@ export default {
   data() {
     return {
       taches: JSON.parse(localStorage.getItem('taches')) || [],
+      filtres: {},
       AddForm: false,
       SearchForm: false,
       DeleteAllConfirmation: false,
-      filtres: {},
       tacheSelectionnee: null,
     };
   },
@@ -69,10 +68,9 @@ export default {
       this.AddForm = false;
     },
     voirTacheDetails(tache) {
-      console.log("voirTacheDetails");
       this.tacheSelectionnee = tache;
     },
-    handleTaskUpdate(tache) {
+    miseAjourTache(tache) {
       this.taches = this.taches.map((t) => {
         if (t.id === tache.id) {
           return tache;
@@ -94,8 +92,8 @@ export default {
 
     },
     /**
-     * Est activé lorsque l'utilisateur va effectuer une recherche
-     * @param {*} filtre 
+     * Est appelé lorsque l'utilisateur va effectuer une recherche
+     * @param {*} filtre champs renseigné par l'utilisateur
      */
     rechercherTaches(filtre) {
       this.taches = JSON.parse(localStorage.getItem('taches')).filter((tache) => {
@@ -113,11 +111,11 @@ export default {
     },
     /**
      * Est activé lorsque l'utisateur va supprimer un filtre
-     * @param {*} filtres 
+     * @param {*} filtres filtres actifs restants
      */
     rechercherAvecFiltres(filtres) {
       this.filtres = filtres; // Met à jour les filtres actifs
-      this.rechercherTaches(filtres); // Effectue la recherche avec les filtres restants
+      this.rechercherTaches(filtres); // Effectue une nouvelle avec les filtres restants
     },
   },
 };
