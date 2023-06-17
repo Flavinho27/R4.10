@@ -2,7 +2,7 @@
     <nav class="teal darken-3" role="navigation">
       <div class="nav-wrapper container">
         <a href="index.html">
-          <img src="./icons/logo.png" alt="Logo" class="logo"/>
+          <img src="../assets/logo.png" alt="Logo" class="logo"/>
         </a>
         <ul class="right">
           <li><a href="../../aide.html">Aide</a></li>
